@@ -1,7 +1,20 @@
 ﻿@page "/roygbiv"
+@using Models.Roygbiv
 
-<h3>Roygbiv</h3>
+<PageTitle>ROYGBIV</PageTitle>
+
+<h1>ROYGBIV</h1>
+
+@foreach (Card card in Hand)
+{
+	<p>Card: @card.Value</p>
+}
 
 @code {
-
+	List<Card> Hand = new()
+	{
+		new Card(){ Value = 1 },
+		new Card(){ Value = 2 },
+		new Card(){ Value = 5 },
+	};
 }
