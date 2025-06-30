@@ -2,7 +2,12 @@
 {
     public class Card
     {
-        public int Value { get; set; }
+        public int Value { get; private set; }
+
+        public Card(int value)
+        {
+            Value = value;
+        }
 
         public override bool Equals(object? obj)
         {
