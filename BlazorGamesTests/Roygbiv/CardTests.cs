@@ -6,7 +6,7 @@ namespace BlazorGamesTests.Roygbiv
     public class CardTests
     {
         [Fact]
-        public void Equal_Cards_Are_Equal()
+        public void EqualCardsAreEqual()
         {
             Card c1 = new Card(7);
             Card c2 = new Card(7);
@@ -14,7 +14,7 @@ namespace BlazorGamesTests.Roygbiv
         }
 
         [Fact]
-        public void Unequal_Cards_Are_Not_Equal()
+        public void UnequalCardsAreNotEqual()
         {
             Card c1 = new Card(7);
             Card c2 = new Card(8);
@@ -22,7 +22,7 @@ namespace BlazorGamesTests.Roygbiv
         }
 
         [Fact]
-        public void Card_With_Parameter_33_Has_Value_Of_33()
+        public void CardWithParameter33HasValue33()
         {
             Card c1 = new Card(33);
             Assert.Equal(33, c1.Value);

@@ -5,16 +5,15 @@
 
 <h1>ROYGBIV</h1>
 
-@foreach (Card card in Hand)
-{
-	<p>Card: @card.Value</p>
-}
+<p>Draw pile</p>
+<p @onclick="DealCards">Action: Deal cards</p>
+<p>Discard pile</p>
 
-@code {
-	List<Card> Hand = new()
+@foreach (Player player in Players)
+{
+	<h2>@player.Name</h2>
+	@foreach (Card card in player.Hand.Cards)
 	{
-		new Card(1),
-		new Card(2),
-		new Card(3),
-	};
+		<span>[@card.Value]</span>
+	}
 }

@@ -2,17 +2,17 @@
 {
     public class Hand
     {
-        private List<Card> _cards = new();
+        public List<Card> Cards { get; } = new();
 
         public void Add(Card card)
         {
-            _cards.Add(card);
+            Cards.Add(card);
         }
 
         public bool IsSorted()
         {
-            int previousValue = _cards.First().Value;
-            foreach (Card card in _cards)
+            int previousValue = Cards.First().Value;
+            foreach (Card card in Cards)
             {
                 if (card.Value < previousValue)
                 {

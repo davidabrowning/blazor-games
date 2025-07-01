@@ -6,10 +6,17 @@ namespace BlazorGamesTests.Roygbiv
     public class DeckTests
     {
         [Fact]
-        public void New_Deck_Has_60_Cards()
+        public void NewDeckHas60Cards()
         {
-            Deck d1 = new();
-            Assert.Equal(60, d1.Count);
+            Deck deck = new();
+            Assert.Equal(60, deck.Count);
+        }
+
+        [Fact]
+        public void DrawReturnsOneCard()
+        {
+            Deck deck = new();
+            Assert.IsType<Card>(deck.Draw());
         }
     }
 }

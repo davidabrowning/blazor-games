@@ -1,3 +1,4 @@
+using BlazorGames.GameLogic.Roygbiv;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -12,6 +13,9 @@ namespace BlazorGames
             builder.RootComponents.Add<HeadOutlet>("head::after");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            
+            // Add game services
+            builder.Services.AddSingleton<GameManager>();
 
             await builder.Build().RunAsync();
         }

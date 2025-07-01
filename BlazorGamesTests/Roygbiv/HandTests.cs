@@ -6,7 +6,7 @@ namespace BlazorGamesTests.Roygbiv
     public class HandTests
     {
         [Fact]
-        public void Hand_With_123_Is_Sorted()
+        public void HandWith123IsSorted()
         {
             Hand hand = new();
             hand.Add(new Card(1));
@@ -16,7 +16,7 @@ namespace BlazorGamesTests.Roygbiv
         }
 
         [Fact]
-        public void Hand_With_321_Is_Not_Sorted()
+        public void HandWith321IsNotSorted()
         {
             Hand hand = new();
             hand.Add(new Card(3));

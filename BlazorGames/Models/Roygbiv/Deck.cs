@@ -2,16 +2,25 @@
 {
     public class Deck
     {
+        public const int MaxSize = 60;
+
         private List<Card> _cards = new();
 
         public int Count { get { return _cards.Count; } }
 
         public Deck()
         {
-            for (int i = 1; i <= 60; i++)
+            for (int i = 1; i <= MaxSize; i++)
             {
                 _cards.Add(new Card(i));
             }
+        }
+
+        public Card Draw()
+        {
+            Card drawnCard = _cards.First();
+            _cards.Remove(drawnCard);
+            return drawnCard;
         }
     }
 }
