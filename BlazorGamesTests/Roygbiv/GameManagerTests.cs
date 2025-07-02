@@ -33,8 +33,8 @@ namespace BlazorGamesTests.Roygbiv
             {
                 numCardsInPlay += player.Hand.Cards.Count;
             }
-            numCardsInPlay += gameManager._drawPile.Cards.Count;
-            numCardsInPlay += gameManager._discardPile.Cards.Count;
+            numCardsInPlay += gameManager.DrawPile.Cards.Count;
+            numCardsInPlay += gameManager.DiscardPile.Cards.Count;
             Assert.Equal(Deck.MaxSize, numCardsInPlay);
         }
     }

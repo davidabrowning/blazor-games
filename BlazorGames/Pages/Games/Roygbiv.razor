@@ -5,7 +5,17 @@
 
 <h1>ROYGBIV</h1>
 
-<p>Draw pile</p>
+<p>
+	Draw pile:
+	@if (DrawPileTopCard != null)
+	{
+		<span>[@DrawPileTopCard.Value]</span>
+	}
+	else
+	{
+		<span>[empty]</span>
+	}
+</p>
 <p @onclick="DealCards">Action: Deal cards</p>
 <p>Discard pile</p>
 

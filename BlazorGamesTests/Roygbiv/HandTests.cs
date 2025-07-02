@@ -9,9 +9,9 @@ namespace BlazorGamesTests.Roygbiv
         public void HandWith123IsSorted()
         {
             Hand hand = new();
-            hand.Add(new Card(1));
-            hand.Add(new Card(2));
-            hand.Add(new Card(3));
+            hand.Cards.Add(new Card(1));
+            hand.Cards.Add(new Card(2));
+            hand.Cards.Add(new Card(3));
             Assert.True(hand.IsSorted());
         }
 
@@ -19,9 +19,9 @@ namespace BlazorGamesTests.Roygbiv
         public void HandWith321IsNotSorted()
         {
             Hand hand = new();
-            hand.Add(new Card(3));
-            hand.Add(new Card(2));
-            hand.Add(new Card(1));
+            hand.Cards.Add(new Card(3));
+            hand.Cards.Add(new Card(2));
+            hand.Cards.Add(new Card(1));
             Assert.False(hand.IsSorted());
         }
     }

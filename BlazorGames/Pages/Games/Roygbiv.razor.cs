@@ -8,6 +8,7 @@ namespace BlazorGames.Pages.Games
         private readonly GameManager _gameManager;
 
         public IEnumerable<Player> Players { get { return _gameManager.Players; } }
+        public Card? DrawPileTopCard { get { return _gameManager.DrawPile.TopCard; } }
 
         public Roygbiv(GameManager gameManager)
         {

@@ -6,10 +6,9 @@ namespace BlazorGames.GameLogic.Roygbiv
     {
         public const int MaxHandSize = 10;
 
-        public Deck _deck { get; } = new();
-        public DrawPile _drawPile { get; } = new();
-        public DiscardPile _discardPile { get;  } = new();
-
+        public Deck Deck { get; } = new();
+        public DrawPile DrawPile { get; } = new();
+        public DiscardPile DiscardPile { get;  } = new();
         public List<Player> Players { get; } = new() { new Player("Player 1"), new Player("Player 2") };
 
         public void DealCards()
@@ -22,14 +21,14 @@ namespace BlazorGames.GameLogic.Roygbiv
                     {
                         continue;
                     }
-                    Card card = _deck.Draw();
-                    player.Hand.Add(card);
+                    Card card = Deck.Draw();
+                    player.Hand.Cards.Add(card);
                 }
             }
-            while (_deck.Count > 0)
+            while (Deck.Count > 0)
             {
-                Card card = _deck.Draw();
-                _drawPile.Cards.Add(card);
+                Card card = Deck.Draw();
+                DrawPile.Cards.Add(card);
             }
         }
         

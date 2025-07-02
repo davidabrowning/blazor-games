@@ -4,11 +4,6 @@
     {
         public List<Card> Cards { get; } = new();
 
-        public void Add(Card card)
-        {
-            Cards.Add(card);
-        }
-
         public bool IsSorted()
         {
             int previousValue = Cards.First().Value;
