@@ -36,9 +36,18 @@ else
 		</div>
 	}
 
-	<div class="card">
-		-
-	</div>
+	@if (DiscardPileTopCard != null)
+	{
+		<div class="card @(DiscardPileIsSelected ? "card-selected" : "")" @onclick="SelectDiscardPile">
+			@DiscardPileTopCard.Value
+		</div>
+	}
+	else
+	{
+		<div class="card">
+			-
+		</div>
+	}
 </div>
 
 @foreach (Player player in Players)
@@ -47,7 +56,7 @@ else
 	<div class="row">
 		@foreach (Card card in player.Hand.Cards)
 		{
-			<div class="card">
+			<div class="card" @onclick="() => HandleHandCardClick(player, card)">
 				@card.Value
 			</div>
 		}

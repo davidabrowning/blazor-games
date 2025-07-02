@@ -17,5 +17,11 @@
             }
             return true;
         }
+
+        public void Replace(Card targetCard, Card newCard)
+        {
+            int index = Cards.IndexOf(targetCard);
+            Cards[index] = newCard;
+        }
     }
 }
