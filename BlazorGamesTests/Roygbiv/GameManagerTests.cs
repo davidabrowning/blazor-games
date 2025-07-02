@@ -103,5 +103,39 @@ namespace BlazorGamesTests.Roygbiv
             gameManager.Players.Add(p3);
             Assert.Equal(p1, gameManager.ActivePlayer);
         }
+
+        [Fact]
+        public void DiscardPileStartsNotSelected()
+        {
+            Assert.False(_gameManagerSinglePlayer.DiscardPileIsSelected);
+        }
+
+        [Fact]
+        public void DiscardPileIsSelectedAfterBeingSelected()
+        {
+            _gameManagerSinglePlayer.SelectDiscardPile();
+            Assert.True(_gameManagerSinglePlayer.DiscardPileIsSelected);
+        }
+
+        [Fact]
+        public void DiscardPileIsNotSelectedAfterBeingSelectedIfDrawPileWasAlreadyRevealed()
+        {
+            _gameManagerSinglePlayer.RevealDrawPile();
+            _gameManagerSinglePlayer.SelectDiscardPile();
+            Assert.False(_gameManagerSinglePlayer.DiscardPileIsSelected);
+        }
+
+        [Fact]
+        public void PilesAreUnselectedAfterHandlingHandClick()
+        {
+            _gameManagerSinglePlayer.DealCards();
+            _gameManagerSinglePlayer.SelectDiscardPile();
+            _gameManagerSinglePlayer.RevealDrawPile();
+            Player targetPlayer = _gameManagerSinglePlayer.Players.First();
+            Card targetCard = targetPlayer.Hand.Cards.First();
+            _gameManagerSinglePlayer.HandleHandCardClick(targetPlayer, targetCard);
+            Assert.False(_gameManagerSinglePlayer.DrawPileIsSelected);
+            Assert.False(_gameManagerSinglePlayer.DiscardPileIsSelected);
+        }
     }
 }

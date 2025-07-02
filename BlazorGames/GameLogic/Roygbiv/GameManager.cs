@@ -66,6 +66,11 @@ namespace BlazorGames.GameLogic.Roygbiv
 
         public void SelectDiscardPile()
         {
+            if (DrawPileIsRevealed)
+            {
+                return;
+            }
+
             DiscardPileIsSelected = true;
         }
 
@@ -78,11 +83,18 @@ namespace BlazorGames.GameLogic.Roygbiv
 
             if (DrawPileIsSelected)
             {
+                DrawPileIsRevealed = false;
+                DrawPileIsSelected = false;
+
                 Card drawnCard = DrawPile.DrawTopCard();
                 targetPlayer.Hand.Replace(targetCard, drawnCard);
                 DiscardPile.Cards.Push(targetCard);
             }
-        }
 
+            if (DiscardPileIsSelected)
+            {
+                DiscardPileIsSelected = false;
+            }
+        }
     }
 }
