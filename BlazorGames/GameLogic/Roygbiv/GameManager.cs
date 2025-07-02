@@ -37,6 +37,17 @@ namespace BlazorGames.GameLogic.Roygbiv
                 DrawPile.Cards.Add(card);
             }
         }
-        
+
+        public bool IsGameOver()
+        {
+            foreach (Player player in Players)
+            {
+                if (player.Hand.IsSorted())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

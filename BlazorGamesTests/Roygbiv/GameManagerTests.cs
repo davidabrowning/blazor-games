@@ -60,6 +60,20 @@ namespace BlazorGamesTests.Roygbiv
         public void IsGameOverIsFalseWhenPlayersHandsAreUnsorted()
         {
             Player p1 = _gameManagerSinglePlayer.Players.First();
+            p1.Hand.Cards.Add(new Card(3));
+            p1.Hand.Cards.Add(new Card(1));
+            p1.Hand.Cards.Add(new Card(8));
+            Assert.False(_gameManagerSinglePlayer.IsGameOver());
+        }
+
+        [Fact]
+        public void IsGameOverIsTrueWhenPlayersHandIsSorted()
+        {
+            Player p1 = _gameManagerSinglePlayer.Players.First();
+            p1.Hand.Cards.Add(new Card(1));
+            p1.Hand.Cards.Add(new Card(3));
+            p1.Hand.Cards.Add(new Card(8));
+            Assert.True(_gameManagerSinglePlayer.IsGameOver());
         }
     }
 }
