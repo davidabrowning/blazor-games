@@ -88,13 +88,17 @@ namespace BlazorGames.GameLogic.Roygbiv
 
                 Card drawnCard = DrawPile.DrawTopCard();
                 targetPlayer.Hand.Replace(targetCard, drawnCard);
-                DiscardPile.Cards.Push(targetCard);
             }
 
             if (DiscardPileIsSelected)
             {
                 DiscardPileIsSelected = false;
+
+                Card drawnCard = DiscardPile.Cards.Pop();
+                targetPlayer.Hand.Replace(targetCard, drawnCard);
             }
+
+            DiscardPile.Cards.Push(targetCard);
         }
     }
 }
