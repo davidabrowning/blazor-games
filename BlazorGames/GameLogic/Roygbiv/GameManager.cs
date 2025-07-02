@@ -9,8 +9,13 @@ namespace BlazorGames.GameLogic.Roygbiv
         public Deck Deck { get; } = new();
         public DrawPile DrawPile { get; } = new();
         public DiscardPile DiscardPile { get;  } = new();
-        public List<Player> Players { get; } = new() { new Player("Player 1"), new Player("Player 2") };
+        public List<Player> Players { get; } = new();
         public bool IsMatchStarted { get {  return Players[0].Hand.Cards.Count > 0; } }
+
+        public void AddPlayer(string playerName)
+        {
+            Players.Add(new Player(playerName));
+        }
 
         public void DealCards()
         {

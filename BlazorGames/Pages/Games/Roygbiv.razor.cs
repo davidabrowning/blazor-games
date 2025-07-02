@@ -13,6 +13,8 @@ namespace BlazorGames.Pages.Games
         public Roygbiv(GameManager gameManager)
         {
             _gameManager = gameManager;
+            _gameManager.AddPlayer("Player 1");
+            _gameManager.AddPlayer("Player 2");
         }
 
         public void DealCards()
