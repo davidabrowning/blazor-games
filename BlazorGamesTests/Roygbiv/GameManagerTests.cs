@@ -7,11 +7,17 @@ namespace BlazorGamesTests.Roygbiv
     public class GameManagerTests
     {
         private readonly GameManager _gameManagerSinglePlayer;
+        private readonly GameManager _gameManagerThreePlayer;
 
         public GameManagerTests()
         {
             _gameManagerSinglePlayer = new GameManager();
             _gameManagerSinglePlayer.AddPlayer("Player 1");
+            _gameManagerThreePlayer = new GameManager();
+            _gameManagerThreePlayer.AddPlayer("Player 1");
+            _gameManagerThreePlayer.AddPlayer("Player 2");
+            _gameManagerThreePlayer.AddPlayer("Player 3");
+
         }
 
         [Fact]
@@ -83,6 +89,19 @@ namespace BlazorGamesTests.Roygbiv
             _gameManagerSinglePlayer.RevealDrawPile();
             Assert.True(_gameManagerSinglePlayer.DrawPileIsRevealed);
             Assert.True(_gameManagerSinglePlayer.DrawPileIsSelected);
+        }
+
+        [Fact]
+        public void FirstPlayerDefaultsToPlayerOne()
+        {
+            Player p1 = new Player("P1");
+            Player p2 = new Player("P2");
+            Player p3 = new Player("P3");
+            GameManager gameManager = new();
+            gameManager.Players.Add(p1);
+            gameManager.Players.Add(p2);
+            gameManager.Players.Add(p3);
+            Assert.Equal(p1, gameManager.ActivePlayer);
         }
     }
 }

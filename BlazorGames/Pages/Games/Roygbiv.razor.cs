@@ -12,6 +12,7 @@ namespace BlazorGames.Pages.Games
         public bool GameInProgress { get { return _gameManager.IsGameInProgress; } }
         public bool DrawPileIsRevealed { get { return _gameManager.DrawPileIsRevealed; } }
         public bool DrawPileIsSelected { get { return _gameManager.DrawPileIsSelected; } }
+        public Player ActivePlayer { get {  return _gameManager.ActivePlayer; } }
 
         public Roygbiv(GameManager gameManager)
         {

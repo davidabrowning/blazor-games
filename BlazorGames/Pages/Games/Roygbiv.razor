@@ -43,7 +43,7 @@ else
 
 @foreach (Player player in Players)
 {
-	<h2>@player.Name</h2>
+	<h2>@player.Name @(player == ActivePlayer ? "(active)" : "")</h2>
 	<div class="row">
 		@foreach (Card card in player.Hand.Cards)
 		{
