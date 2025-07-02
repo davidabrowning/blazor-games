@@ -6,8 +6,7 @@ namespace BlazorGames.GameLogic.Roygbiv
     {
         public const int MaxHandSize = 10;
 
-        private int turnCounter = 0;
-
+        public int TurnCounter { get; private set; } = 0;
         public Deck Deck { get; } = new();
         public DrawPile DrawPile { get; } = new();
         public DiscardPile DiscardPile { get; } = new();
@@ -17,7 +16,7 @@ namespace BlazorGames.GameLogic.Roygbiv
         public bool DrawPileIsRevealed { get; private set; } = false;
         public bool DrawPileIsSelected { get; private set; } = false;
         public bool DiscardPileIsSelected { get; private set; } = false;
-        public Player ActivePlayer { get { return Players[turnCounter % Players.Count]; } }
+        public Player ActivePlayer { get { return Players[TurnCounter % Players.Count]; } }
 
         public void AddPlayer(string playerName)
         {
@@ -62,6 +61,7 @@ namespace BlazorGames.GameLogic.Roygbiv
         {
             DrawPileIsRevealed = true;
             DrawPileIsSelected = true;
+            DiscardPileIsSelected = false;
         }
 
         public void SelectDiscardPile()
@@ -99,6 +99,7 @@ namespace BlazorGames.GameLogic.Roygbiv
             }
 
             DiscardPile.Cards.Push(targetCard);
+            TurnCounter++;
         }
     }
 }

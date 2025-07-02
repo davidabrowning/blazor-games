@@ -129,13 +129,25 @@ namespace BlazorGamesTests.Roygbiv
         public void PilesAreUnselectedAfterHandlingHandClick()
         {
             _gameManagerSinglePlayer.DealCards();
-            _gameManagerSinglePlayer.SelectDiscardPile();
             _gameManagerSinglePlayer.RevealDrawPile();
             Player targetPlayer = _gameManagerSinglePlayer.Players.First();
             Card targetCard = targetPlayer.Hand.Cards.First();
             _gameManagerSinglePlayer.HandleHandCardClick(targetPlayer, targetCard);
             Assert.False(_gameManagerSinglePlayer.DrawPileIsSelected);
             Assert.False(_gameManagerSinglePlayer.DiscardPileIsSelected);
+        }
+
+        [Fact]
+        public void TurnCounterIncrementsAfterHandClick()
+        {
+            _gameManagerSinglePlayer.DealCards();
+            _gameManagerSinglePlayer.RevealDrawPile();
+            Player targetPlayer = _gameManagerSinglePlayer.Players.First();
+            Card targetCard = targetPlayer.Hand.Cards.First();
+            int initialTurnCounter = _gameManagerSinglePlayer.TurnCounter;
+            _gameManagerSinglePlayer.HandleHandCardClick(targetPlayer, targetCard);
+            int finalTurnCounter = _gameManagerSinglePlayer.TurnCounter;
+            Assert.Equal(initialTurnCounter + 1, finalTurnCounter);
         }
     }
 }
