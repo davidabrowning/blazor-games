@@ -7,7 +7,7 @@
 
 @if (GameInProgress)
 {
-	<button class="btn btn-primary mb-4 disabled" @onclick="DealCards">Deal cards</button>
+	<button class="btn btn-secondary mb-4 disabled">Game in progress</button>
 }
 else
 {
@@ -18,8 +18,15 @@ else
 <div class="row">
 	@if (DrawPileTopCard != null)
 	{
-		<div class="card">
-			@DrawPileTopCard.Value
+		<div class="card @(DrawPileIsSelected ? "card-selected" : "")" @onclick="RevealDrawPile">
+			@if (DrawPileIsRevealed)
+			{
+				@DrawPileTopCard.Value
+			}
+			else
+			{
+				@("???")
+			}
 		</div>
 	}
 	else

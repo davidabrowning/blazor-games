@@ -3,3 +3,7 @@
     height: 4rem;
     width: 3rem;
 }
+
+.card-selected {
+    background-color: yellow;
+}

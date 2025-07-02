@@ -75,5 +75,14 @@ namespace BlazorGamesTests.Roygbiv
             p1.Hand.Cards.Add(new Card(8));
             Assert.True(_gameManagerSinglePlayer.IsGameOver());
         }
+
+        [Fact]
+        public void RevealDrawPileRevealsAndSelectsDrawPile()
+        {
+            _gameManagerSinglePlayer.DealCards();
+            _gameManagerSinglePlayer.RevealDrawPile();
+            Assert.True(_gameManagerSinglePlayer.DrawPileIsRevealed);
+            Assert.True(_gameManagerSinglePlayer.DrawPileIsSelected);
+        }
     }
 }

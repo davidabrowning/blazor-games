@@ -10,6 +10,8 @@ namespace BlazorGames.Pages.Games
         public IEnumerable<Player> Players { get { return _gameManager.Players; } }
         public Card? DrawPileTopCard { get { return _gameManager.DrawPile.TopCard; } }
         public bool GameInProgress { get { return _gameManager.IsGameInProgress; } }
+        public bool DrawPileIsRevealed { get { return _gameManager.DrawPileIsRevealed; } }
+        public bool DrawPileIsSelected { get { return _gameManager.DrawPileIsSelected; } }
 
         public Roygbiv(GameManager gameManager)
         {
@@ -21,6 +23,11 @@ namespace BlazorGames.Pages.Games
         public void DealCards()
         {
             _gameManager.DealCards();
+        }
+
+        public void RevealDrawPile()
+        {
+            _gameManager.RevealDrawPile();
         }
     }
 }
