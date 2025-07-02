@@ -5,25 +5,36 @@
 
 <h1>ROYGBIV</h1>
 
-<p>
-	Draw pile:
+<button class="btn btn-primary mb-4" @onclick="DealCards">Deal cards</button>
+
+<div class="row">
 	@if (DrawPileTopCard != null)
 	{
-		<span>[@DrawPileTopCard.Value]</span>
+		<div class="card">
+			@DrawPileTopCard.Value
+		</div>
 	}
 	else
 	{
-		<span>[empty]</span>
+		<div class="card">
+			-
+		</div>
 	}
-</p>
-<p @onclick="DealCards">Action: Deal cards</p>
-<p>Discard pile</p>
+
+	<div class="card">
+		-
+	</div>
+</div>
 
 @foreach (Player player in Players)
 {
 	<h2>@player.Name</h2>
-	@foreach (Card card in player.Hand.Cards)
-	{
-		<span>[@card.Value]</span>
-	}
+	<div class="row">
+		@foreach (Card card in player.Hand.Cards)
+		{
+			<div class="card">
+				@card.Value
+			</div>
+		}
+	</div>
 }

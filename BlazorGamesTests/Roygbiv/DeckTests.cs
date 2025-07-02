@@ -16,7 +16,7 @@ namespace BlazorGamesTests.Roygbiv
         public void DrawReturnsOneCard()
         {
             Deck deck = new();
-            Assert.IsType<Card>(deck.Draw());
+            Assert.IsType<Card>(deck.DrawTopCard());
         }
     }
 }

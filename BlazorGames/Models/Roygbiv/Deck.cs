@@ -16,7 +16,7 @@
             }
         }
 
-        public Card Draw()
+        public Card DrawTopCard()
         {
             Card drawnCard = _cards.First();
             _cards.Remove(drawnCard);

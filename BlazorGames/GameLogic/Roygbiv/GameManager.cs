@@ -21,13 +21,13 @@ namespace BlazorGames.GameLogic.Roygbiv
                     {
                         continue;
                     }
-                    Card card = Deck.Draw();
+                    Card card = Deck.DrawTopCard();
                     player.Hand.Cards.Add(card);
                 }
             }
             while (Deck.Count > 0)
             {
-                Card card = Deck.Draw();
+                Card card = Deck.DrawTopCard();
                 DrawPile.Cards.Add(card);
             }
         }
