@@ -10,6 +10,7 @@ namespace BlazorGames.GameLogic.Roygbiv
         public DrawPile DrawPile { get; } = new();
         public DiscardPile DiscardPile { get;  } = new();
         public List<Player> Players { get; } = new() { new Player("Player 1"), new Player("Player 2") };
+        public bool IsMatchStarted { get {  return Players[0].Hand.Cards.Count > 0; } }
 
         public void DealCards()
         {

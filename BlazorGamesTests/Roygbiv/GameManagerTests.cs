@@ -37,5 +37,20 @@ namespace BlazorGamesTests.Roygbiv
             numCardsInPlay += gameManager.DiscardPile.Cards.Count;
             Assert.Equal(Deck.MaxSize, numCardsInPlay);
         }
+
+        [Fact]
+        public void IsGameStartedStartsAsFalse()
+        {
+            GameManager gameManager = new();
+            Assert.False(gameManager.IsMatchStarted);
+        }
+
+        [Fact]
+        public void IsGameStartedIsTrueAfterDealingCards()
+        {
+            GameManager gameManager = new();
+            gameManager.DealCards();
+            Assert.True(gameManager.IsMatchStarted);
+        }
     }
 }
