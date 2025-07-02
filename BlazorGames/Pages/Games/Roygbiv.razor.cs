@@ -9,6 +9,7 @@ namespace BlazorGames.Pages.Games
 
         public IEnumerable<Player> Players { get { return _gameManager.Players; } }
         public Card? DrawPileTopCard { get { return _gameManager.DrawPile.TopCard; } }
+        public bool GameInProgress { get { return _gameManager.IsGameInProgress; } }
 
         public Roygbiv(GameManager gameManager)
         {

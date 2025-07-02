@@ -11,6 +11,7 @@ namespace BlazorGames.GameLogic.Roygbiv
         public DiscardPile DiscardPile { get;  } = new();
         public List<Player> Players { get; } = new();
         public bool IsMatchStarted { get {  return Players[0].Hand.Cards.Count > 0; } }
+        public bool IsGameInProgress { get { return IsMatchStarted && !IsGameOver(); } }
 
         public void AddPlayer(string playerName)
         {
@@ -19,6 +20,7 @@ namespace BlazorGames.GameLogic.Roygbiv
 
         public void DealCards()
         {
+            Deck.Shuffle();
             foreach (Player player in Players)
             {
                 for (int i = 0; i < MaxHandSize; i++)

@@ -22,5 +22,10 @@
             _cards.Remove(drawnCard);
             return drawnCard;
         }
+
+        public void Shuffle()
+        {
+            _cards = _cards.OrderBy(c => Guid.NewGuid()).ToList();
+        }
     }
 }

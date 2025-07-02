@@ -5,7 +5,15 @@
 
 <h1>ROYGBIV</h1>
 
-<button class="btn btn-primary mb-4" @onclick="DealCards">Deal cards</button>
+@if (GameInProgress)
+{
+	<button class="btn btn-primary mb-4 disabled" @onclick="DealCards">Deal cards</button>
+}
+else
+{
+	<button class="btn btn-primary mb-4" @onclick="DealCards">Deal cards</button>
+}
+
 
 <div class="row">
 	@if (DrawPileTopCard != null)
