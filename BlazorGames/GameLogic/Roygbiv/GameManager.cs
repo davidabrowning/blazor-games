@@ -81,6 +81,11 @@ namespace BlazorGames.GameLogic.Roygbiv
                 return;
             }
 
+            if (!DrawPileIsSelected && !DiscardPileIsSelected)
+            {
+                return;
+            }
+
             if (DrawPileIsSelected)
             {
                 DrawPileIsRevealed = false;
