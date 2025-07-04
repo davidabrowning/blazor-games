@@ -1,0 +1,13 @@
+﻿<div class="card"
+	 style="background-color:lightgray"
+	 @onclick="@OnClick">
+	@Text
+</div>
+
+@code {
+	[Parameter]
+	public string Text { get; set; } = string.Empty;
+
+	[Parameter]
+	public EventCallback OnClick { get; set; }
+}
