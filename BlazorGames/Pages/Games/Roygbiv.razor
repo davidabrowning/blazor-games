@@ -16,29 +16,33 @@ else
 
 
 <div class="row">
-	@if (DrawPileTopCard != null)
-	{
-		<div class="card @(DrawPileIsSelected ? "card-selected" : "")" @onclick="RevealDrawPile">
-			@if (DrawPileIsRevealed)
-			{
-				@DrawPileTopCard.Value
-			}
-			else
-			{
-				@("???")
-			}
-		</div>
-	}
-	else
+	@if (DrawPileTopCard == null)
 	{
 		<div class="card">
 			-
 		</div>
 	}
+	else if (!DrawPileIsRevealed)
+	{
+		<div class="card"
+			 style="background-color:lightgray;"
+			 @onclick="RevealDrawPile">
+			???
+		</div>
+	}
+	else
+	{
+		<div class="card card-selected"
+			 style="background-color:@DrawPileTopCard.Color">
+			@DrawPileTopCard.Value
+		</div>
+	}
 
 	@if (DiscardPileTopCard != null)
 	{
-		<div class="card @(DiscardPileIsSelected ? "card-selected" : "")" @onclick="SelectDiscardPile">
+		<div class="card @(DiscardPileIsSelected ? "card-selected" : "")"
+			 style="background-color:@DiscardPileTopCard.Color"
+			 @onclick="SelectDiscardPile">
 			@DiscardPileTopCard.Value
 		</div>
 	}
@@ -56,7 +60,9 @@ else
 	<div class="row">
 		@foreach (Card card in player.Hand.Cards)
 		{
-			<div class="card" @onclick="() => HandleHandCardClick(player, card)">
+			<div class="card"
+				 style="background-color:@card.Color"
+				 @onclick="() => HandleHandCardClick(player, card)">
 				@card.Value
 			</div>
 		}
