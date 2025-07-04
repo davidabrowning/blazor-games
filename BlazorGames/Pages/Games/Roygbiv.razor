@@ -22,7 +22,8 @@ else
 				  OnClickEventCallback="() => RevealDrawPile()" />
 
 	<DiscardPileView DiscardPileTopCard="@DiscardPileTopCard"
-					 DiscardPileIsSelected="@DiscardPileIsSelected" />
+					 DiscardPileIsSelected="@DiscardPileIsSelected" 
+					 OnClickEventCallback="() => SelectDiscardPile()" />
 </div>
 
 @foreach (Player player in Players)

@@ -2,7 +2,7 @@
 
 @if (DiscardPileTopCard != null)
 {
-	<NumberCardView Card="@DiscardPileTopCard" IsSelected=@DiscardPileIsSelected />
+	<NumberCardView Card="@DiscardPileTopCard" IsSelected=@DiscardPileIsSelected OnClick="@OnClickEventCallback" />
 }
 else
 {
@@ -15,4 +15,7 @@ else
 
 	[Parameter]
 	public bool DiscardPileIsSelected { get; set; }
+
+	[Parameter]
+	public EventCallback OnClickEventCallback { get; set; }
 }
