@@ -1,0 +1,21 @@
+﻿@using Models.Roygbiv;
+
+@if (DiscardPileTopCard != null)
+{
+	<NumberCardView Card="@DiscardPileTopCard" IsSelected=@DiscardPileIsSelected OnClick="@OnClickEventCallback" />
+}
+else
+{
+	<EmptyCardView Text="-" />
+}
+
+@code {
+	[Parameter]
+	public Card? DiscardPileTopCard { get; set; }
+
+	[Parameter]
+	public bool DiscardPileIsSelected { get; set; }
+
+	[Parameter]
+	public EventCallback OnClickEventCallback { get; set; }
+}

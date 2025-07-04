@@ -1,5 +1,6 @@
 ﻿@page "/roygbiv"
 @using Models.Roygbiv
+@using BlazorGames.Components.Roygbiv
 
 <PageTitle>ROYGBIV</PageTitle>
 
@@ -16,38 +17,13 @@ else
 
 
 <div class="row">
-	@if (DrawPileTopCard != null)
-	{
-		<div class="card @(DrawPileIsSelected ? "card-selected" : "")" @onclick="RevealDrawPile">
-			@if (DrawPileIsRevealed)
-			{
-				@DrawPileTopCard.Value
-			}
-			else
-			{
-				@("???")
-			}
-		</div>
-	}
-	else
-	{
-		<div class="card">
-			-
-		</div>
-	}
+	<DrawPileView DrawPileTopCard="@DrawPileTopCard"
+				  DrawPileIsRevealed="@DrawPileIsRevealed"
+				  OnClickEventCallback="() => RevealDrawPile()" />
 
-	@if (DiscardPileTopCard != null)
-	{
-		<div class="card @(DiscardPileIsSelected ? "card-selected" : "")" @onclick="SelectDiscardPile">
-			@DiscardPileTopCard.Value
-		</div>
-	}
-	else
-	{
-		<div class="card">
-			-
-		</div>
-	}
+	<DiscardPileView DiscardPileTopCard="@DiscardPileTopCard"
+					 DiscardPileIsSelected="@DiscardPileIsSelected" 
+					 OnClickEventCallback="() => SelectDiscardPile()" />
 </div>
 
 @foreach (Player player in Players)
@@ -56,9 +32,7 @@ else
 	<div class="row">
 		@foreach (Card card in player.Hand.Cards)
 		{
-			<div class="card" @onclick="() => HandleHandCardClick(player, card)">
-				@card.Value
-			</div>
+			<NumberCardView Card=@card IsSelected=false OnClick="() => HandleHandCardClick(player, card)" />
 		}
 	</div>
 }
