@@ -30,18 +30,29 @@ namespace BlazorGames.GameLogic.Roygbiv
         public void DealCards()
         {
             Deck.Shuffle();
+            DealHandsToPlayers();
+            DealRemainingCardsToDrawPile();
+        }
+
+        private void DealHandsToPlayers()
+        {
             foreach (Player player in Players)
             {
-                for (int i = 0; i < MaxHandSize; i++)
-                {
-                    if (player.Hand.Cards.Count >= MaxHandSize)
-                    {
-                        continue;
-                    }
-                    Card card = Deck.DrawTopCard();
-                    player.Hand.Cards.Add(card);
-                }
+                DealHandToPlayer(player);
             }
+        }
+
+        private void DealHandToPlayer(Player player)
+        {
+            while (player.Hand.Cards.Count < MaxHandSize)
+            {
+                Card card = Deck.DrawTopCard();
+                player.Hand.Cards.Add(card);
+            }
+        }
+
+        private void DealRemainingCardsToDrawPile()
+        {
             while (Deck.Count > 0)
             {
                 Card card = Deck.DrawTopCard();
