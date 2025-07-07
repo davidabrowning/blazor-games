@@ -12,7 +12,11 @@
 }
 else
 {
-	<button class="btn btn-primary mb-4" @onclick="DealCards">Deal cards</button>
+	<button class="btn btn-primary mb-4" @onclick="() => StartGame(1)">1 player</button>
+	<button class="btn btn-primary mb-4" @onclick="() => StartGame(2)">2 players</button>
+	<button class="btn btn-primary mb-4" @onclick="() => StartGame(3)">3 players</button>
+	<button class="btn btn-primary mb-4" @onclick="() => StartGame(4)">4 players</button>
+	<button class="btn btn-primary mb-4" @onclick="() => StartGame(5)">5 players</button>
 }
 
 

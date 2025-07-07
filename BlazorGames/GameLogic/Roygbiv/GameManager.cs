@@ -13,7 +13,7 @@ namespace BlazorGames.GameLogic.Roygbiv
         public DrawPile DrawPile { get; } = new();
         public DiscardPile DiscardPile { get; } = new();
         public List<Player> Players { get; } = new();
-        public bool IsMatchStarted { get {  return Players[0].Hand.Cards.Count > 0; } }
+        public bool IsMatchStarted { get { return Players.Count > 0 && Players[0].Hand.Cards.Count > 0; } }
         public bool IsGameInProgress { get { return IsMatchStarted && !IsGameOver(); } }
         public Player ActivePlayer { get { return Players[TurnCounter % Players.Count]; } }
 
@@ -22,9 +22,13 @@ namespace BlazorGames.GameLogic.Roygbiv
             _uiManager = uiManager;
         }
 
-        public void AddPlayer(string playerName)
+        public void AddPlayers(int numPlayers)
         {
-            Players.Add(new Player(playerName));
+            for (int i = 0; i < numPlayers; i++)
+            {
+                Player player = new Player("Player " + i);
+                Players.Add(player);
+            }
         }
 
         public void DealCards()
