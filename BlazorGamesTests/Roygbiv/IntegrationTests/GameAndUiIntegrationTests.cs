@@ -13,7 +13,7 @@ namespace BlazorGamesTests.Roygbiv.IntegrationTests
             UIManager uiManager = new();
             GameManager gameManager = new(uiManager);
 
-            gameManager.AddPlayer("Player 1");
+            gameManager.AddPlayers(1);
 
             gameManager.DealCards();
             uiManager.RevealDrawPile();
@@ -31,7 +31,7 @@ namespace BlazorGamesTests.Roygbiv.IntegrationTests
             UIManager uiManager = new();
             GameManager gameManager = new(uiManager);
 
-            gameManager.AddPlayer("Player 1");
+            gameManager.AddPlayers(1);
 
             gameManager.DealCards();
             uiManager.RevealDrawPile();

@@ -17,10 +17,7 @@ namespace BlazorGamesTests.Roygbiv
 
         private void CreateGame(int numPlayers)
         {
-            for (int i = 0; i < numPlayers; i++)
-            {
-                _gameManager.AddPlayer("Player " + i);
-            }
+            _gameManager.AddPlayers(numPlayers);
         }
 
         [Fact]
