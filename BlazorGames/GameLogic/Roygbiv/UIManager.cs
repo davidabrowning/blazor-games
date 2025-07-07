@@ -13,8 +13,9 @@
             DiscardPileIsSelected = false;
         }
 
-        public void DeselectAllPiles()
+        public void UnrevealDrawPileAndDeselectAllPiles()
         {
+            DrawPileIsRevealed = false;
             DrawPileIsSelected = false;
             DiscardPileIsSelected = false;
         }

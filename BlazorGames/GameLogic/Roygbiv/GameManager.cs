@@ -89,7 +89,7 @@ namespace BlazorGames.GameLogic.Roygbiv
                 return;
             }
 
-            _uiManager.DeselectAllPiles();
+            _uiManager.UnrevealDrawPileAndDeselectAllPiles();
             targetPlayer.Hand.Replace(targetCard, drawnCard);
             DiscardPile.Cards.Push(targetCard);
             TurnCounter++;
