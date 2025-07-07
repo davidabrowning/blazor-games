@@ -16,6 +16,7 @@ namespace BlazorGames
             
             // Add game services
             builder.Services.AddSingleton<GameManager>();
+            builder.Services.AddSingleton<UIManager>();
 
             await builder.Build().RunAsync();
         }

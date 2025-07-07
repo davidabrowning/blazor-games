@@ -6,6 +6,8 @@ namespace BlazorGames.GameLogic.Roygbiv
     {
         public const int MaxHandSize = 10;
 
+        private readonly UIManager _uiManager;
+
         public int TurnCounter { get; private set; } = 0;
         public Deck Deck { get; } = new();
         public DrawPile DrawPile { get; } = new();
@@ -13,10 +15,12 @@ namespace BlazorGames.GameLogic.Roygbiv
         public List<Player> Players { get; } = new();
         public bool IsMatchStarted { get {  return Players[0].Hand.Cards.Count > 0; } }
         public bool IsGameInProgress { get { return IsMatchStarted && !IsGameOver(); } }
-        public bool DrawPileIsRevealed { get; private set; } = false;
-        public bool DrawPileIsSelected { get; private set; } = false;
-        public bool DiscardPileIsSelected { get; private set; } = false;
         public Player ActivePlayer { get { return Players[TurnCounter % Players.Count]; } }
+
+        public GameManager(UIManager uiManager)
+        {
+            _uiManager = uiManager;
+        }
 
         public void AddPlayer(string playerName)
         {
@@ -57,23 +61,6 @@ namespace BlazorGames.GameLogic.Roygbiv
             return false;
         }
 
-        public void RevealDrawPile()
-        {
-            DrawPileIsRevealed = true;
-            DrawPileIsSelected = true;
-            DiscardPileIsSelected = false;
-        }
-
-        public void SelectDiscardPile()
-        {
-            if (DrawPileIsRevealed)
-            {
-                return;
-            }
-
-            DiscardPileIsSelected = true;
-        }
-
         public void HandleHandCardClick(Player targetPlayer, Card targetCard)
         {
             if (targetPlayer != ActivePlayer)
@@ -81,28 +68,29 @@ namespace BlazorGames.GameLogic.Roygbiv
                 return;
             }
 
-            if (!DrawPileIsSelected && !DiscardPileIsSelected)
+            if (!_uiManager.DrawPileIsSelected && !_uiManager.DiscardPileIsSelected)
             {
                 return;
             }
 
-            if (DrawPileIsSelected)
+            Card? drawnCard = null;
+            if (_uiManager.DrawPileIsSelected)
             {
-                DrawPileIsRevealed = false;
-                DrawPileIsSelected = false;
-
-                Card drawnCard = DrawPile.DrawTopCard();
-                targetPlayer.Hand.Replace(targetCard, drawnCard);
+                drawnCard = DrawPile.DrawTopCard();
             }
 
-            if (DiscardPileIsSelected)
+            if (_uiManager.DiscardPileIsSelected)
             {
-                DiscardPileIsSelected = false;
-
-                Card drawnCard = DiscardPile.Cards.Pop();
-                targetPlayer.Hand.Replace(targetCard, drawnCard);
+                drawnCard = DiscardPile.Cards.Pop();
             }
 
+            if (drawnCard == null)
+            {
+                return;
+            }
+
+            _uiManager.DeselectAllPiles();
+            targetPlayer.Hand.Replace(targetCard, drawnCard);
             DiscardPile.Cards.Push(targetCard);
             TurnCounter++;
         }
