@@ -1,8 +1,10 @@
-﻿<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(1)">1 player</button>
-<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(2)">2 players</button>
-<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(3)">3 players</button>
-<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(4)">4 players</button>
-<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(5)">5 players</button>
+﻿<div class="d-flex justify-content-center flex-wrap">
+	<button class="btn btn-primary mx-4" @onclick="() => SendPlayerCount(1)">1 player</button>
+	<button class="btn btn-primary mx-4" @onclick="() => SendPlayerCount(2)">2 players</button>
+	<button class="btn btn-primary mx-4" @onclick="() => SendPlayerCount(3)">3 players</button>
+	<button class="btn btn-primary mx-4" @onclick="() => SendPlayerCount(4)">4 players</button>
+	<button class="btn btn-primary mx-4" @onclick="() => SendPlayerCount(5)">5 players</button>
+</div>
 
 @code {
 	[Parameter]
