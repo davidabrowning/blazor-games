@@ -23,20 +23,23 @@
 </section>
 
 <section>
-	<h2>In progress (active)</h2>
-
+	<h2>Hands in progress</h2>
+	@code {
+		List<Player> players = new List<Player>();
+	}
+	<PlayersHandsView ActivePlayer="@players.First()" Players="@players" />
 </section>
 
 <section>
-	<h2>Standard player (inactive)</h2>
+	<h2>Hand (inactive)</h2>
 </section>
 
 <section>
-	<h2>Final result (victorious)</h2>
+	<h2>Hand (victorious)</h2>
 </section>
 
 <section>
-	<h2>Final result (not victorious)</h2>
+	<h2>Hand (not victorious)</h2>
 </section>
 
 <section>
