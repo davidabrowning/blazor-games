@@ -6,20 +6,15 @@
 }
 else if (!DrawPileIsRevealed)
 {
-	<EmptyCardView Text="???" OnClick="OnClickEventCallback" />
+	<EmptyCardView Text="???" OnClick="@OnClickEventCallback" />
 }
 else
 {
-	<NumberCardView Card=@DrawPileTopCard IsSelected=true />
+	<NumberCardView Card="@DrawPileTopCard" IsSelected=true />
 }
 
 @code {
-	[Parameter]
-	public Card? DrawPileTopCard { get; set; }
-
-	[Parameter]
-	public bool DrawPileIsRevealed { get; set; }
-
-	[Parameter]
-	public EventCallback OnClickEventCallback { get; set;  }
+	[Parameter] public Card? DrawPileTopCard { get; set; }
+	[Parameter] public bool DrawPileIsRevealed { get; set; } = false;
+	[Parameter] public EventCallback OnClickEventCallback { get; set; }
 }
