@@ -10,15 +10,14 @@
 }
 else
 {
-	<div class="row justify-content-center">
+	<div class="row justify-content-center my-4">
 		<DrawPileView DrawPileTopCard="@DrawPileTopCard" DrawPileIsRevealed="@DrawPileIsRevealed" OnClickEventCallback="() => RevealDrawPile()" />
 		<DiscardPileView DiscardPileTopCard="@DiscardPileTopCard" DiscardPileIsSelected="@DiscardPileIsSelected" OnClickEventCallback="() => SelectDiscardPile()" />
 	</div>
 
 	@foreach (Player player in Players)
 	{
-		<h2>@player.Name @(player == ActivePlayer ? "(active)" : "")</h2>
-		<div class="row justify-content-center">
+		<div class="row justify-content-center player-container @(player == ActivePlayer ? "player-container-active" : "player-container-inactive")">
 			@foreach (Card card in player.Hand.Cards)
 			{
 				<NumberCardView Card=@card IsSelected=false OnClick="() => HandleHandCardClick(player, card)" />
