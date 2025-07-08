@@ -8,7 +8,7 @@
 
 <section>
 	<h2>Unrevealed draw and discard piles</h2>
-	<div class="row">
+	<div class="row justify-content-center">
 		<DrawPileView DrawPileTopCard="new Card(60)" DrawPileIsRevealed="false" />
 		<DiscardPileView DiscardPileTopCard="new Card(60)" DiscardPileIsSelected="false" />
 	</div>
@@ -16,7 +16,7 @@
 
 <section>
 	<h2>Revealed and selected draw and discard piles</h2>
-	<div class="row">
+	<div class="row justify-content-center">
 		<DrawPileView DrawPileTopCard="new Card(60)" DrawPileIsRevealed="true" />
 		<DiscardPileView DiscardPileTopCard="new Card(60)" DiscardPileIsSelected="true" />
 	</div>
@@ -43,7 +43,7 @@
 	@for (int playerNum = 1; playerNum <= 5; playerNum++)
 	{
 		<h2>Player @playerNum</h2>
-		<div class="row">
+		<div class="row justify-content-center">
 			@for (int i = 0; i < 10; i++)
 			{
 				Card card = new Card(i * 6 + 1);
