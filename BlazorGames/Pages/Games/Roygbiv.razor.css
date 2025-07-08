@@ -1,11 +1,11 @@
-﻿.player-container {
-    padding: 1rem;
-}
-
-.player-container-active {
-    background-color: lightgray;
+﻿.player-container-active {
+    opacity: 1.0;
 }
 
 .player-container-inactive {
     opacity: 0.5;
+}
+
+.player-container + .player-container {
+    border-top: 1px solid lightgray;
 }

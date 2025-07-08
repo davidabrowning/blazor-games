@@ -1,7 +1,11 @@
 ﻿.card {
-    border: 1px solid black;
+    border: 1px solid white;
+    border-radius: 0px;
     height: 16vh;
     width: 10vh;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;
 }
 
 .card-unrevealed {
