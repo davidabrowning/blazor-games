@@ -4,6 +4,6 @@
     width: 10vh;
 }
 
-.card-selected {
-    border: 1px solid yellow;
+.card-unrevealed {
+    background-color: darkgray;
 }

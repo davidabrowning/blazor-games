@@ -2,11 +2,11 @@
 
 @if (DrawPileTopCard == null)
 {
-	<EmptyCardView Text="-" />
+	<EmptyCardView Text="N/A" />
 }
 else if (!DrawPileIsRevealed)
 {
-	<EmptyCardView Text="???" OnClick="@OnClickEventCallback" />
+	<UnrevealedCardView Text="" OnClick="@OnClickEventCallback" />
 }
 else
 {
