@@ -1,0 +1,15 @@
+﻿<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(1)">1 player</button>
+<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(2)">2 players</button>
+<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(3)">3 players</button>
+<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(4)">4 players</button>
+<button class="btn btn-primary mb-4" @onclick="() => SendPlayerCount(5)">5 players</button>
+
+@code {
+	[Parameter]
+	public EventCallback<int> OnClickEventCallback { get; set; }
+
+	private async Task SendPlayerCount(int playerCount)
+	{
+		await OnClickEventCallback.InvokeAsync(playerCount);
+	}
+}

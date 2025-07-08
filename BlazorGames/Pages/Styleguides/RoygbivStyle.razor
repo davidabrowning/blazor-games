@@ -1,0 +1,54 @@
+﻿@page "/roygbiv-styleguide"
+@using BlazorGames.Components.Roygbiv
+@using BlazorGames.Models.Roygbiv
+
+<PageTitle>Roygbiv Style Guide</PageTitle>
+
+<h1>Roygbiv Style Guide</h1>
+
+<section>
+	<h2>Unrevealed draw and discard piles</h2>
+	<div class="row">
+		<DrawPileView DrawPileTopCard="new Card(60)" DrawPileIsRevealed="false" />
+		<DiscardPileView DiscardPileTopCard="new Card(60)" DiscardPileIsSelected="false" />
+	</div>
+</section>
+
+<section>
+	<h2>Revealed and selected draw and discard piles</h2>
+	<div class="row">
+		<DrawPileView DrawPileTopCard="new Card(60)" DrawPileIsRevealed="true" />
+		<DiscardPileView DiscardPileTopCard="new Card(60)" DiscardPileIsSelected="true" />
+	</div>
+</section>
+
+<section>
+	<h2>In progress (active)</h2>
+</section>
+
+<section>
+	<h2>Standard player (inactive)</h2>
+</section>
+
+<section>
+	<h2>Final result (victorious)</h2>
+</section>
+
+<section>
+	<h2>Final result (not victorious)</h2>
+</section>
+
+<section>
+	<h2>Player hands with sample cards</h2>
+	@for (int playerNum = 1; playerNum <= 5; playerNum++)
+	{
+		<h2>Player @playerNum</h2>
+		<div class="row">
+			@for (int i = 0; i < 10; i++)
+			{
+				Card card = new Card(i * 6 + 1);
+				<NumberCardView Card="@card" />
+			}
+		</div>
+	}
+</section>
