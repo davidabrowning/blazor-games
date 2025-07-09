@@ -138,6 +138,15 @@ namespace BlazorGames.GameLogic.Roygbiv
             if (_uiManager.DrawPileIsSelected)
             {
                 drawnCard = DrawPile.DrawTopCard();
+                if (DrawPile.Cards.Count == 0)
+                {
+                    while(DiscardPile.Cards.Count > 0)
+                    {
+                        Deck.Cards.Add(DiscardPile.Cards.Pop());
+                    }
+                    Deck.Shuffle();
+                    DealRemainingCardsToDrawPile();
+                }
             }
 
             if (_uiManager.DiscardPileIsSelected)
