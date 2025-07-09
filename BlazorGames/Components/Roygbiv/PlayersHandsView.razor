@@ -5,13 +5,14 @@
 	<div class="row justify-content-center player-container @(player == ActivePlayer ? "player-container-active" : "player-container-inactive")">
 		@foreach (Card card in player.Hand.Cards)
 		{
-			<NumberCardView Card=@card IsSelected=false OnClick="() => SendPlayerAndCard(player, card)" />
+			<NumberCardView Card=@card IsSelected=@(card == ActiveSwapCard ? true : false) OnClick="() => SendPlayerAndCard(player, card)" />
 		}
 	</div>
 }
 
 @code {
 	[Parameter] public Player? ActivePlayer { get; set; } 
+	[Parameter] public Card? ActiveSwapCard { get; set; }
 	[Parameter] public required IEnumerable<Player> Players { get; set; }
 	[Parameter] public EventCallback<PlayerCardSelection> OnClickEventCallback { get; set; }
 

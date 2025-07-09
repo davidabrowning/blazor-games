@@ -12,10 +12,12 @@ namespace BlazorGames.Pages.Games
         public Card? DrawPileTopCard { get { return _gameManager.DrawPile.TopCard; } }
         public Card? DiscardPileTopCard { get { return _gameManager.DiscardPile.TopCard; } }
         public bool GameInProgress { get { return _gameManager.IsGameInProgress; } }
+        public bool InitialSwapsInProgress { get { return _gameManager.InitialSwapsInProgress; } }
         public bool DrawPileIsRevealed { get { return _uiManager.DrawPileIsRevealed; } }
         public bool DrawPileIsSelected { get { return _uiManager.DrawPileIsSelected; } }
         public bool DiscardPileIsSelected { get { return _uiManager.DiscardPileIsSelected; } }
         public Player ActivePlayer { get {  return _gameManager.ActivePlayer; } }
+        public Card? ActiveSwapCard { get { return _gameManager.ActiveSwapCard; } }
 
         public Roygbiv(GameManager gameManager, UIManager uiManager)
         {
@@ -31,12 +33,12 @@ namespace BlazorGames.Pages.Games
 
         public void RevealDrawPile()
         {
-            _uiManager.RevealDrawPile();
+            _gameManager.HandleDrawPileClick();
         }
 
         public void SelectDiscardPile()
         {
-            _uiManager.SelectDiscardPile();
+            _gameManager.HandleDiscardPileClick();
         }
 
         public void HandleHandCardClick(Player player, Card card)

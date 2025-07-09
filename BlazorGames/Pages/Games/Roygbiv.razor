@@ -10,10 +10,16 @@
 }
 else
 {
-	<div class="row justify-content-center my-4">
-		<DrawPileView DrawPileTopCard="@DrawPileTopCard" DrawPileIsRevealed="@DrawPileIsRevealed" OnClickEventCallback="() => RevealDrawPile()" />
-		<DiscardPileView DiscardPileTopCard="@DiscardPileTopCard" DiscardPileIsSelected="@DiscardPileIsSelected" OnClickEventCallback="() => SelectDiscardPile()" />
-	</div>
+	<CardPilesView InitialSwapsInProgress="@InitialSwapsInProgress"
+				   DrawPileTopCard="@DrawPileTopCard"
+				   DrawPileIsRevealed="@DrawPileIsRevealed"
+				   DrawPileClickEventCallback="() => RevealDrawPile()"
+				   DiscardPileTopCard="@DiscardPileTopCard"
+				   DiscardPileIsSelected="@DiscardPileIsSelected"
+				   DiscardPileClickEventCallback="() => SelectDiscardPile()" />
 
-	<PlayersHandsView ActivePlayer="@ActivePlayer" Players="@Players" OnClickEventCallback="(playerCardSelection) => HandleHandCardClick(playerCardSelection.Player, playerCardSelection.Card)" />
+	<PlayersHandsView ActivePlayer="@ActivePlayer"
+					  ActiveSwapCard="@ActiveSwapCard"
+					  Players="@Players"
+					  OnClickEventCallback="(playerCardSelection) => HandleHandCardClick(playerCardSelection.Player, playerCardSelection.Card)" />
 }

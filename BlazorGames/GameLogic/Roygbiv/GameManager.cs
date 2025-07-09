@@ -15,7 +15,9 @@ namespace BlazorGames.GameLogic.Roygbiv
         public List<Player> Players { get; } = new();
         public bool IsMatchStarted { get { return Players.Count > 0 && Players[0].Hand.Cards.Count > 0; } }
         public bool IsGameInProgress { get { return IsMatchStarted && !IsGameOver(); } }
+        public bool InitialSwapsInProgress { get { return Players.Where(p => p.Hand.HasSwapped == false).Any(); } }
         public Player ActivePlayer { get { return Players[TurnCounter % Players.Count]; } }
+        public Card? ActiveSwapCard { get; private set; } = null;
 
         public GameManager(UIManager uiManager)
         {
@@ -76,6 +78,26 @@ namespace BlazorGames.GameLogic.Roygbiv
             return false;
         }
 
+        public void HandleDrawPileClick()
+        {
+            if (InitialSwapsInProgress)
+            {
+                return;
+            }
+
+            _uiManager.RevealDrawPile();
+        }
+
+        public void HandleDiscardPileClick()
+        {
+            if (InitialSwapsInProgress)
+            {
+                return;
+            }
+
+            _uiManager.SelectDiscardPile();
+        }
+
         public void HandleHandCardClick(Player targetPlayer, Card targetCard)
         {
             if (targetPlayer != ActivePlayer)
@@ -83,11 +105,35 @@ namespace BlazorGames.GameLogic.Roygbiv
                 return;
             }
 
-            if (!_uiManager.DrawPileIsSelected && !_uiManager.DiscardPileIsSelected)
+            if (InitialSwapsInProgress)
             {
+                HandleInitialSwapClick(targetPlayer, targetCard);
+            }
+
+            if (_uiManager.DrawPileIsSelected || _uiManager.DiscardPileIsSelected)
+            {
+                HandleCardPickupClick(targetPlayer, targetCard);
+            }
+        }
+
+        private void HandleInitialSwapClick(Player targetPlayer, Card targetCard)
+        {
+            if (ActiveSwapCard == null)
+            {
+                ActiveSwapCard = targetCard;
                 return;
             }
 
+            if (ActiveSwapCard != targetCard)
+            {
+                targetPlayer.Hand.Swap(ActiveSwapCard, targetCard);
+                ActiveSwapCard = null;
+                TurnCounter++;
+            }
+        }
+
+        private void HandleCardPickupClick(Player targetPlayer, Card targetCard)
+        {
             Card? drawnCard = null;
             if (_uiManager.DrawPileIsSelected)
             {

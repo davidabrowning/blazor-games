@@ -110,5 +110,35 @@ namespace BlazorGamesTests.Roygbiv
             int finalTurnCounter = _gameManager.TurnCounter;
             Assert.Equal(initialTurnCounter + 1, finalTurnCounter);
         }
+
+        [Fact]
+        public void SwapsInitiallyInProgress()
+        {
+            CreateGame(2);
+            _gameManager.DealCards();
+            Assert.True(_gameManager.InitialSwapsInProgress);
+        }
+
+        [Fact]
+        public void SwapsInProgressAfterOneOfTwoPlayersHasSwapped()
+        {
+            CreateGame(2);
+            _gameManager.DealCards();
+            Hand hand = _gameManager.Players[0].Hand;
+            hand.Swap(hand.Cards[0], hand.Cards[1]);
+            Assert.True(_gameManager.InitialSwapsInProgress);
+        }
+
+        [Fact]
+        public void SwapsCompleteAfterBothPlayersHaveSwapped()
+        {
+            CreateGame(2);
+            _gameManager.DealCards();
+            Hand hand1 = _gameManager.Players[0].Hand;
+            hand1.Swap(hand1.Cards[0], hand1.Cards[1]);
+            Hand hand2 = _gameManager.Players[1].Hand;
+            hand2.Swap(hand2.Cards[0], hand2.Cards[1]);
+            Assert.False(_gameManager.InitialSwapsInProgress);
+        }
     }
 }
