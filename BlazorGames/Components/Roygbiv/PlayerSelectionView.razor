@@ -1,10 +1,12 @@
-﻿<div class="d-flex justify-content-center flex-wrap">
-	<button class="btn btn-outline-primary mx-1" @onclick="() => SendPlayerCount(1)">1 player</button>
-	<button class="btn btn-outline-primary mx-1" @onclick="() => SendPlayerCount(2)">2 players</button>
-	<button class="btn btn-outline-primary mx-1" @onclick="() => SendPlayerCount(3)">3 players</button>
-	<button class="btn btn-outline-primary mx-1" @onclick="() => SendPlayerCount(4)">4 players</button>
-	<button class="btn btn-outline-primary mx-1" @onclick="() => SendPlayerCount(5)">5 players</button>
-</div>
+﻿@for (int i = 1; i <= 5; i++)
+{
+	int playerCount = i;
+	string playerCountText = (playerCount == 1 ? $"1 player" : $"{playerCount} players");
+
+	<div class="text-center justify-content-center">
+		<button class="btn btn-lg btn-outline-primary my-4" @onclick="() => SendPlayerCount(playerCount)">@playerCountText</button>
+	</div>
+}
 
 @code {
 	[Parameter]

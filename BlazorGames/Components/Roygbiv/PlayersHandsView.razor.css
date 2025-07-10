@@ -1,4 +1,8 @@
-﻿.player-container-victorious {
+﻿.player-container {
+    border-radius: 10px;
+}
+
+.player-container-victorious {
     background-color: lightskyblue;
 }
 
