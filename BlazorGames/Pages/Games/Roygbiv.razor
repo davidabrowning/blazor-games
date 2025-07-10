@@ -17,6 +17,7 @@
 
 <div id="playing-area" class="@(ViewingInstructions ? "d-none" : "")">
 	<div class="d-grid d-md-flex justify-content-md-end">
+		<button class="btn btn-link" @onclick="() => EndGame()">Restart</button>
 		<button class="btn btn-link" @onclick="() => ToggleInstructions()">How to play</button>
 	</div>
 	@if (!GameInProgress)

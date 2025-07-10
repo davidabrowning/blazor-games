@@ -26,10 +26,14 @@ namespace BlazorGames.Pages.Games
             _uiManager = uiManager;
         }
 
+        public void EndGame()
+        {
+            _gameManager.EndGame();
+        }
+
         public void StartGame(int numPlayers)
         {
-            _gameManager.AddPlayers(numPlayers);
-            _gameManager.DealCards();
+            _gameManager.StartGame(numPlayers);
         }
 
         public void RevealDrawPile()
