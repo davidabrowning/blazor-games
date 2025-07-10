@@ -1,8 +1,10 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager
 
-<PageTitle>Home</PageTitle>
-
-<small>ABOUT BLAZOR GAMES</small>
-<p>Free games built by .NET student <a href="https://www.linkedin.com/in/davidabrowning/">David Browning</a> using ASP.NET Core Blazor.</p>
-<p>Select a game from the menu to start playing.</p>
-<p>Having fun? Let me know by sending me a message on <a href="https://www.linkedin.com/in/davidabrowning/">LinkedIn</a>!</p>
+@code {
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		NavigationManager.NavigateTo("/roygbiv");
+	}
+}
