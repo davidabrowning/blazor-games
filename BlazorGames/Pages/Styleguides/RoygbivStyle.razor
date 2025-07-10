@@ -23,23 +23,38 @@
 </section>
 
 <section>
-	<h2>Hands in progress</h2>
-	@code {
-		List<Player> players = new List<Player>();
-	}
-	<PlayersHandsView ActivePlayer="@players.First()" Players="@players" />
+	<h2>Hand (active)</h2>
+	<div class="row justify-content-center player-container player-container-active">
+		@for (int i = 0; i < 10; i++)
+		{
+			Random random = new Random();
+			Card card = new Card(random.Next(1, 60));
+			<NumberCardView Card="@card" />
+		}
+	</div>
 </section>
 
 <section>
 	<h2>Hand (inactive)</h2>
+	<div class="row justify-content-center player-container player-container-inactive">
+		@for (int i = 0; i < 10; i++)
+		{
+			Random random = new Random();
+			Card card = new Card(random.Next(1, 60));
+			<NumberCardView Card="@card" />
+		}
+	</div>
 </section>
 
 <section>
 	<h2>Hand (victorious)</h2>
-</section>
-
-<section>
-	<h2>Hand (not victorious)</h2>
+	<div class="row justify-content-center player-container player-container-inactive player-container-victorious">
+		@for (int i = 0; i < 10; i++)
+		{
+			Card card = new Card(i * 2 + 2);
+			<NumberCardView Card="@card" />
+		}
+	</div>
 </section>
 
 <section>

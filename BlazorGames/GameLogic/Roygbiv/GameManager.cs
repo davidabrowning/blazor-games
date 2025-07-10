@@ -13,8 +13,9 @@ namespace BlazorGames.GameLogic.Roygbiv
         public DrawPile DrawPile { get; private set; } = new();
         public DiscardPile DiscardPile { get; private set; } = new();
         public List<Player> Players { get; } = new();
-        public bool IsMatchStarted { get { return Players.Count > 0 && Players[0].Hand.Cards.Count > 0; } }
-        public bool IsGameInProgress { get { return IsMatchStarted && !IsGameOver(); } }
+        public bool HasGameStarted { get { return Players.Count > 0 && Players[0].Hand.Cards.Count > 0; } }
+        public bool HasGameEnded { get { return IsGameOver(); } }
+        public bool IsGameInProgress { get { return HasGameStarted && !HasGameEnded; } }
         public bool InitialSwapsInProgress { get { return Players.Where(p => p.Hand.HasSwapped == false).Any(); } }
         public Player ActivePlayer { get { return Players[TurnCounter % Players.Count]; } }
         public Card? ActiveSwapCard { get; private set; } = null;
@@ -95,6 +96,11 @@ namespace BlazorGames.GameLogic.Roygbiv
 
         public void HandleDrawPileClick()
         {
+            if (HasGameEnded)
+            {
+                return;
+            }
+
             if (InitialSwapsInProgress)
             {
                 return;
@@ -105,6 +111,11 @@ namespace BlazorGames.GameLogic.Roygbiv
 
         public void HandleDiscardPileClick()
         {
+            if (HasGameEnded)
+            {
+                return;
+            }
+
             if (InitialSwapsInProgress)
             {
                 return;
@@ -115,6 +126,11 @@ namespace BlazorGames.GameLogic.Roygbiv
 
         public void HandleHandCardClick(Player targetPlayer, Card targetCard)
         {
+            if (HasGameEnded)
+            {
+                return;
+            }
+
             if (targetPlayer != ActivePlayer)
             {
                 return;
@@ -139,7 +155,11 @@ namespace BlazorGames.GameLogic.Roygbiv
                 return;
             }
 
-            if (ActiveSwapCard != targetCard)
+            if (ActiveSwapCard == targetCard)
+            {
+                ActiveSwapCard = null;
+            }
+            else
             {
                 targetPlayer.Hand.Swap(ActiveSwapCard, targetCard);
                 ActiveSwapCard = null;

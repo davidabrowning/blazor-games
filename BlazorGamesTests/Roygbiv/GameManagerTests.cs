@@ -56,7 +56,7 @@ namespace BlazorGamesTests.Roygbiv
         public void IsGameStartedStartsAsFalse()
         {
             CreateGame(1);
-            Assert.False(_gameManager.IsMatchStarted);
+            Assert.False(_gameManager.HasGameStarted);
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace BlazorGamesTests.Roygbiv
         {
             CreateGame(1);
             _gameManager.DealCards();
-            Assert.True(_gameManager.IsMatchStarted);
+            Assert.True(_gameManager.HasGameStarted);
         }
 
         [Fact]

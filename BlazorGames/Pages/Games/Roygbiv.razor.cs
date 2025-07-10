@@ -12,6 +12,8 @@ namespace BlazorGames.Pages.Games
         public IEnumerable<Player> Players { get { return _gameManager.Players; } }
         public Card? DrawPileTopCard { get { return _gameManager.DrawPile.TopCard; } }
         public Card? DiscardPileTopCard { get { return _gameManager.DiscardPile.TopCard; } }
+        public bool HasGameStarted { get { return _gameManager.HasGameStarted; } }
+        public bool HasGameEnded { get { return _gameManager.HasGameEnded; } }
         public bool GameInProgress { get { return _gameManager.IsGameInProgress; } }
         public bool InitialSwapsInProgress { get { return _gameManager.InitialSwapsInProgress; } }
         public bool DrawPileIsRevealed { get { return _uiManager.DrawPileIsRevealed; } }

@@ -20,7 +20,7 @@
 		<button class="btn btn-link" @onclick="() => EndGame()">Restart</button>
 		<button class="btn btn-link" @onclick="() => ToggleInstructions()">How to play</button>
 	</div>
-	@if (!GameInProgress)
+	@if (!HasGameStarted)
 	{
 		<PlayerSelectionView OnClickEventCallback="(numPlayers) => StartGame(numPlayers)" />
 	}
