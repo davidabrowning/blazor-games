@@ -4,22 +4,26 @@
 
 <PageTitle>ROYGBIV</PageTitle>
 
-<div id="instructions" class="@(ViewingInstructions ? "" : "d-none" )">
+<div id="instructions" class="@(ViewingInstructions ? "" : "d-none")">
 	<div class="container">
 		<div class="row">
 			<div class="col"></div>
 			<div class="col-8"><InstructionsView OnClickEventCallback="() => ToggleInstructions()" /></div>
 			<div class="col"></div>
 		</div>
-		
+
 	</div>
 </div>
 
 <div id="playing-area" class="@(ViewingInstructions ? "d-none" : "")">
-	<div class="d-grid d-md-flex justify-content-md-end">
-		<button class="btn btn-link" @onclick="() => EndGame()">Restart</button>
-		<button class="btn btn-link" @onclick="() => ToggleInstructions()">How to play</button>
+
+	<div class="top-row px-4">
+		<div class="d-grid d-md-flex justify-content-md-end">
+			<button class="btn btn-link @(HasGameStarted ? "" : "d-none")" @onclick="() => EndGame()">Restart</button>
+			<button class="btn btn-link" @onclick="() => ToggleInstructions()">How to play</button>
+		</div>
 	</div>
+
 	@if (!HasGameStarted)
 	{
 		<PlayerSelectionView OnClickEventCallback="(numPlayers) => StartGame(numPlayers)" />
