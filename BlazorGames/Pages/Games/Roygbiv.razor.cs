@@ -8,6 +8,7 @@ namespace BlazorGames.Pages.Games
         private readonly GameManager _gameManager;
         private readonly UIManager _uiManager;
 
+        public bool ViewingInstructions { get; set; } = true;
         public IEnumerable<Player> Players { get { return _gameManager.Players; } }
         public Card? DrawPileTopCard { get { return _gameManager.DrawPile.TopCard; } }
         public Card? DiscardPileTopCard { get { return _gameManager.DiscardPile.TopCard; } }
@@ -44,6 +45,11 @@ namespace BlazorGames.Pages.Games
         public void HandleHandCardClick(Player player, Card card)
         {
             _gameManager.HandleHandCardClick(player, card);
+        }
+
+        public void ToggleInstructions()
+        {
+            ViewingInstructions = !ViewingInstructions;
         }
     }
 }

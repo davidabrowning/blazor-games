@@ -4,22 +4,38 @@
 
 <PageTitle>ROYGBIV</PageTitle>
 
-@if (!GameInProgress)
-{
-	<PlayerSelectionView OnClickEventCallback="(numPlayers) => StartGame(numPlayers)" />
-}
-else
-{
-	<CardPilesView InitialSwapsInProgress="@InitialSwapsInProgress"
-				   DrawPileTopCard="@DrawPileTopCard"
-				   DrawPileIsRevealed="@DrawPileIsRevealed"
-				   DrawPileClickEventCallback="() => RevealDrawPile()"
-				   DiscardPileTopCard="@DiscardPileTopCard"
-				   DiscardPileIsSelected="@DiscardPileIsSelected"
-				   DiscardPileClickEventCallback="() => SelectDiscardPile()" />
+<div id="instructions" class="@(ViewingInstructions ? "" : "d-none" )">
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-8"><InstructionsView OnClickEventCallback="() => ToggleInstructions()" /></div>
+			<div class="col"></div>
+		</div>
+		
+	</div>
+</div>
 
-	<PlayersHandsView ActivePlayer="@ActivePlayer"
-					  ActiveSwapCard="@ActiveSwapCard"
-					  Players="@Players"
-					  OnClickEventCallback="(playerCardSelection) => HandleHandCardClick(playerCardSelection.Player, playerCardSelection.Card)" />
-}
+<div id="playing-area" class="@(ViewingInstructions ? "d-none" : "")">
+	<div class="d-grid d-md-flex justify-content-md-end">
+		<button class="btn btn-link" @onclick="() => ToggleInstructions()">How to play</button>
+	</div>
+	@if (!GameInProgress)
+	{
+		<PlayerSelectionView OnClickEventCallback="(numPlayers) => StartGame(numPlayers)" />
+	}
+	else
+	{
+		<CardPilesView InitialSwapsInProgress="@InitialSwapsInProgress"
+					   DrawPileTopCard="@DrawPileTopCard"
+					   DrawPileIsRevealed="@DrawPileIsRevealed"
+					   DrawPileClickEventCallback="() => RevealDrawPile()"
+					   DiscardPileTopCard="@DiscardPileTopCard"
+					   DiscardPileIsSelected="@DiscardPileIsSelected"
+					   DiscardPileClickEventCallback="() => SelectDiscardPile()" />
+
+		<PlayersHandsView ActivePlayer="@ActivePlayer"
+						  ActiveSwapCard="@ActiveSwapCard"
+						  Players="@Players"
+						  OnClickEventCallback="(playerCardSelection) => HandleHandCardClick(playerCardSelection.Player, playerCardSelection.Card)" />
+	}
+</div>
