@@ -8,6 +8,6 @@
     text-align: center;
 }
 
-.card-selected {
-    border: 1px solid black;
+.card-unrevealed {
+    background-color: darkgray;
 }

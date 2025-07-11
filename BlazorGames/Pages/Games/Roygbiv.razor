@@ -4,35 +4,43 @@
 
 <PageTitle>ROYGBIV</PageTitle>
 
-<h1>ROYGBIV</h1>
+<div id="instructions" class="@(ViewingInstructions ? "" : "d-none")">
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-8"><InstructionsView OnClickEventCallback="() => ToggleInstructions()" /></div>
+			<div class="col"></div>
+		</div>
 
-@if (GameInProgress)
-{
-	<button class="btn btn-secondary mb-4 disabled">Game in progress</button>
-}
-else
-{
-	<button class="btn btn-primary mb-4" @onclick="DealCards">Deal cards</button>
-}
-
-
-<div class="row">
-	<DrawPileView DrawPileTopCard="@DrawPileTopCard"
-				  DrawPileIsRevealed="@DrawPileIsRevealed"
-				  OnClickEventCallback="() => RevealDrawPile()" />
-
-	<DiscardPileView DiscardPileTopCard="@DiscardPileTopCard"
-					 DiscardPileIsSelected="@DiscardPileIsSelected" 
-					 OnClickEventCallback="() => SelectDiscardPile()" />
+	</div>
 </div>
 
-@foreach (Player player in Players)
-{
-	<h2>@player.Name @(player == ActivePlayer ? "(active)" : "")</h2>
-	<div class="row">
-		@foreach (Card card in player.Hand.Cards)
-		{
-			<NumberCardView Card=@card IsSelected=false OnClick="() => HandleHandCardClick(player, card)" />
-		}
+<div id="playing-area" class="@(ViewingInstructions ? "d-none" : "")">
+
+	<div class="top-row px-4">
+		<div class="d-grid d-md-flex justify-content-md-end">
+			<button class="btn btn-link @(HasGameStarted ? "" : "d-none")" @onclick="() => EndGame()">Restart</button>
+			<button class="btn btn-link" @onclick="() => ToggleInstructions()">How to play</button>
+		</div>
 	</div>
-}
+
+	@if (!HasGameStarted)
+	{
+		<PlayerSelectionView OnClickEventCallback="(numPlayers) => StartGame(numPlayers)" />
+	}
+	else
+	{
+		<CardPilesView InitialSwapsInProgress="@InitialSwapsInProgress"
+					   DrawPileTopCard="@DrawPileTopCard"
+					   DrawPileIsRevealed="@DrawPileIsRevealed"
+					   DrawPileClickEventCallback="() => RevealDrawPile()"
+					   DiscardPileTopCard="@DiscardPileTopCard"
+					   DiscardPileIsSelected="@DiscardPileIsSelected"
+					   DiscardPileClickEventCallback="() => SelectDiscardPile()" />
+
+		<PlayersHandsView ActivePlayer="@ActivePlayer"
+						  ActiveSwapCard="@ActiveSwapCard"
+						  Players="@Players"
+						  OnClickEventCallback="(playerCardSelection) => HandleHandCardClick(playerCardSelection.Player, playerCardSelection.Card)" />
+	}
+</div>

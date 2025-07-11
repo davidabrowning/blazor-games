@@ -1,0 +1,16 @@
+﻿@using BlazorGames.Models.Roygbiv
+
+<div class="row justify-content-center my-4 @(InitialSwapsInProgress ? "row-inactive" : "row-active")">
+	<DrawPileView DrawPileTopCard="@DrawPileTopCard" DrawPileIsRevealed="@DrawPileIsRevealed" OnClickEventCallback="@DrawPileClickEventCallback" />
+	<DiscardPileView DiscardPileTopCard="@DiscardPileTopCard" DiscardPileIsSelected="@DiscardPileIsSelected" OnClickEventCallback="@DiscardPileClickEventCallback" />
+</div>
+
+@code {
+	[Parameter] public bool InitialSwapsInProgress { get; set; }
+	[Parameter] public Card? DrawPileTopCard { get; set; }
+	[Parameter] public bool DrawPileIsRevealed { get; set; }
+	[Parameter] public EventCallback DrawPileClickEventCallback { get; set; }
+	[Parameter] public Card? DiscardPileTopCard { get; set; }
+	[Parameter] public bool DiscardPileIsSelected { get; set; }
+	[Parameter] public EventCallback DiscardPileClickEventCallback { get; set; }
+}

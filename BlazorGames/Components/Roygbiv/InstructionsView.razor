@@ -1,0 +1,39 @@
+﻿@using BlazorGames.Models.Roygbiv
+
+<div class="text-center">
+	<h3 class="my-4">How to play ROYGBIV</h3>
+	<div class="my-5">
+		<p>Initial swap: Each player swaps two cards in their hand.</p>
+		<p>Each turn: Draw a new card and place it in your hand.*</p>
+		<p>When all of your cards are in ascending order you win!</p>
+		<small>*You can draw from either the draw pile or the discard pile.</small>
+	</div>
+	<div class="text-center">
+		<small>EXAMPLE HAND IN PROGRESS:</small>
+	</div>
+	<div class="row justify-content-center mb-4">
+		<NumberCardView Card="@(new Card(35))" />
+		<NumberCardView Card="@(new Card(20))" />
+		<NumberCardView Card="@(new Card(1))" />
+		<NumberCardView Card="@(new Card(45))" />
+		<NumberCardView Card="@(new Card(15))" />
+	</div>
+	<div class="text-center">
+		<small>EXAMPLE WINNING HAND:</small>
+	</div>
+	<div class="row justify-content-center mb-4">
+		<NumberCardView Card="@(new Card(2))" />
+		<NumberCardView Card="@(new Card(10))" />
+		<NumberCardView Card="@(new Card(22))" />
+		<NumberCardView Card="@(new Card(38))" />
+		<NumberCardView Card="@(new Card(60))" />
+	</div>
+	<div class="text-center justify-content-center">
+		<button class="btn btn-lg btn-outline-primary" @onclick="@OnClickEventCallback">Play</button>
+	</div>
+</div>
+
+
+@code {
+	[Parameter] public EventCallback OnClickEventCallback { get; set; }
+}

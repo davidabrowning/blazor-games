@@ -1,12 +1,12 @@
 ﻿@using Models.Roygbiv;
 
-@if (DiscardPileTopCard != null)
+@if (DiscardPileTopCard == null)
 {
-	<NumberCardView Card="@DiscardPileTopCard" IsSelected=@DiscardPileIsSelected OnClick="@OnClickEventCallback" />
+	<EmptyPileView Text="Discard" />
 }
 else
 {
-	<EmptyCardView Text="-" />
+	<NumberCardView Card="@DiscardPileTopCard" IsSelected=@DiscardPileIsSelected OnClick="@OnClickEventCallback" />
 }
 
 @code {

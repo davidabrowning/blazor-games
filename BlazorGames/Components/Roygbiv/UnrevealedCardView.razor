@@ -1,0 +1,6 @@
+﻿<div class="card card-unrevealed mx-2" @onclick="@OnClick">@Text</div>
+
+@code {
+	[Parameter] public string Text { get; set; } = string.Empty;
+	[Parameter] public EventCallback OnClick { get; set; }
+}

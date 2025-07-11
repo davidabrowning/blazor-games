@@ -1,0 +1,27 @@
+﻿@using BlazorGames.Models.Roygbiv
+
+@foreach (Player player in Players)
+{
+	<div class="row justify-content-center player-container
+			@(player == ActivePlayer ? "player-container-active" : "player-container-inactive")
+			@(player.Hand.IsSorted() ? "player-container-victorious" : "")
+	">
+		@foreach (Card card in player.Hand.Cards)
+		{
+			<NumberCardView Card=@card IsSelected=@(card == ActiveSwapCard ? true : false) OnClick="() => SendPlayerAndCard(player, card)" />
+		}
+	</div>
+}
+
+@code {
+	[Parameter] public Player? ActivePlayer { get; set; }
+	[Parameter] public Card? ActiveSwapCard { get; set; }
+	[Parameter] public required IEnumerable<Player> Players { get; set; }
+	[Parameter] public EventCallback<PlayerCardSelection> OnClickEventCallback { get; set; }
+
+	private async Task SendPlayerAndCard(Player player, Card card)
+	{
+		PlayerCardSelection playerCardSelection = new() { Player = player, Card = card };
+		await OnClickEventCallback.InvokeAsync(playerCardSelection);
+	}
+}

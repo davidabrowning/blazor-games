@@ -73,5 +73,52 @@ namespace BlazorGamesTests.Roygbiv
             hand.Replace(c2, c4);
             Assert.Equal(c4, hand.Cards[1]);
         }
+
+        [Fact]
+        public void HandStartsWithHasSwappedAsFalse()
+        {
+            Hand hand = new();
+            Assert.False(hand.HasSwapped);
+        }
+
+        [Fact]
+        public void HandHasSwappedAsTrueAfterSwappingTwoCards()
+        {
+            Hand hand = new();
+            Card c1 = new Card(1);
+            Card c2 = new Card(2);
+            hand.Swap(c1, c2);
+        }
+
+        [Fact]
+        public void CardsChangePositionAfterSwap()
+        {
+            Hand hand = new();
+            Card c1 = new Card(1);
+            Card c2 = new Card(2);
+            hand.Cards.Add(c1);
+            hand.Cards.Add(c2);
+            Assert.Equal(c1, hand.Cards[0]);
+            Assert.Equal(c2, hand.Cards[1]);
+            hand.Swap(c1, c2);
+            Assert.Equal(c2, hand.Cards[0]);
+            Assert.Equal(c1, hand.Cards[1]);
+        }
+
+        [Fact]
+        public void SwapDoesNotChangeHandSize()
+        {
+            Hand hand = new();
+            Card c1 = new Card(23);
+            Card c2 = new Card(7);
+            Card c3 = new Card(5);
+            hand.Cards.Add(c1);
+            hand.Cards.Add(c2);
+            hand.Cards.Add(c3);
+            int initialHandSize = hand.Cards.Count;
+            hand.Swap(c1, c3);
+            int finalHandSize = hand.Cards.Count;
+            Assert.Equal(initialHandSize, finalHandSize);
+        }
     }
 }

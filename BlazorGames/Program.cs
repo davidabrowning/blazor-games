@@ -15,7 +15,8 @@ namespace BlazorGames
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             
             // Add game services
-            builder.Services.AddSingleton<GameManager>();
+            builder.Services.AddScoped<GameManager>();
+            builder.Services.AddScoped<UIManager>();
 
             await builder.Build().RunAsync();
         }
