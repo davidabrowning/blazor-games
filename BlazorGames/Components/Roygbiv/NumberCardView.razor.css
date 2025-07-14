@@ -5,9 +5,13 @@
     width: 10vh;
     padding: 1rem;
     margin: 1rem;
-    text-align: center;
+    text-align: left;
 }
 
 .card-selected {
     border: 1px solid black;
+}
+
+.player-container .card + .card {
+    margin-left: -5vh;
 }
