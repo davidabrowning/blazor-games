@@ -4,6 +4,8 @@
 
 <PageTitle>Roygbiv Style Guide</PageTitle>
 
+<link rel="stylesheet" href="css/roygbiv.css" />
+
 <h1>Roygbiv Style Guide</h1>
 
 <section>
@@ -61,7 +63,7 @@
 	<h2>Player hands with sample cards</h2>
 	@for (int playerNum = 1; playerNum <= 5; playerNum++)
 	{
-		<div class="row justify-content-center">
+		<div class="row justify-content-center player-container">
 			@for (int i = 0; i < 10; i++)
 			{
 				Card card = new Card(i * 6 + 1);

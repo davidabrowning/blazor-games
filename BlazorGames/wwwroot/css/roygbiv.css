@@ -1,0 +1,49 @@
+﻿.row-inactive {
+    opacity: 0.1;
+}
+
+.card {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    height: 16vh;
+    width: 10vh;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: left;
+}
+
+.card-empty {
+    background-color: white;
+}
+
+.card-selected {
+    border: 1px solid black;
+}
+
+.card-unrevealed {
+    background-color: darkgray;
+}
+
+.player-container-victorious .card {
+    border: 1px solid black;
+}
+
+.player-container .card + .card {
+    margin-left: -5vh;
+}
+
+.player-container {
+    border-radius: 10px;
+}
+
+.player-container-victorious {
+    background-color: lightskyblue;
+}
+
+.player-container-active {
+    border: 1px solid lightgray;
+}
+
+.player-container-inactive {
+    border: 1px solid white;
+}
