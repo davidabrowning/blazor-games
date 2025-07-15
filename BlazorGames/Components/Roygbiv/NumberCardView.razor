@@ -1,6 +1,6 @@
 ﻿@using Models.Roygbiv
 
-<div class="card @(IsSelected ? "card-selected" : "") mx-2"
+<div class="card @(IsSelected ? "card-selected" : "")"
 	 style="background-color:@Card.Color"
 	 @onclick="@OnClick">
 	@Card.Value
