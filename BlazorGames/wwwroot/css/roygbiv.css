@@ -5,8 +5,8 @@
 .card {
     border: 1px solid lightgray;
     border-radius: 10px;
-    height: 16vh;
-    width: 10vh;
+    width: 8vw;
+    aspect-ratio: 3 / 4;
     padding: 1rem;
     margin: 1rem;
     text-align: left;
@@ -34,6 +34,7 @@
 
 .player-container {
     border-radius: 10px;
+    flex-wrap: nowrap;
 }
 
 .player-container-victorious {
