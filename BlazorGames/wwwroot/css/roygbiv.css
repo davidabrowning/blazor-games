@@ -11,6 +11,7 @@
         padding: 0rem;
         padding-top: 0.25rem;
         text-align: center;
+        font-size: x-small;
     }
 
     .player-container .card + .card {
