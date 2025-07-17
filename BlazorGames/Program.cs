@@ -1,4 +1,3 @@
-using BlazorGames.GameLogic.Roygbiv;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -15,8 +14,9 @@ namespace BlazorGames
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             
             // Add game services
-            builder.Services.AddScoped<GameManager>();
-            builder.Services.AddScoped<UIManager>();
+            builder.Services.AddScoped<GameLogic.Roygbiv.GameManager>();
+            builder.Services.AddScoped<GameLogic.Roygbiv.UIManager>();
+            builder.Services.AddScoped<GameLogic.BattleWordle.GameManager>();
 
             await builder.Build().RunAsync();
         }

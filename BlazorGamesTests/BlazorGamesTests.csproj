@@ -22,4 +22,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BattleWordle\IntegrationTests\" />
+  </ItemGroup>
+
 </Project>

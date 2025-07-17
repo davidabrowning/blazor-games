@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Components\BattleWordle\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
