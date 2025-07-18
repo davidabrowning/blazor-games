@@ -1,0 +1,23 @@
+﻿.answer-input-row, .keyboard-row {
+    justify-content: center;
+}
+
+.answer-input-row {
+    margin-bottom: 4rem;
+}
+
+.answer-input-letter, .keyboard-key {
+    width: 9%;
+    aspect-ratio: 1 / 1;
+}
+
+.keyboard-submit {
+    width: 25%;
+    aspect-ratio: 4 / 1;
+    text-align: center;
+}
+
+.answer-input-letter, .keyboard-key, .keyboard-submit {
+    border: 1px solid black;
+    margin: 0.1%;
+}
