@@ -42,11 +42,55 @@ namespace BlazorGames.GameLogic.BattleWordle
             for (int i = 0; i < guessResult.WordLength; i++)
             {
                 char guessedLetter = guess[i];
-                if (guessedLetter != answer[i] && answer.Contains(guessedLetter))
+                int instancesOfThisLetterInAnswer = answer.Count(letter => letter == guessedLetter);
+                int correctInstancesOfThisLetter = CalculateCorrectInstancesOfLetter(guessedLetter, guess, answer);
+                int previousIncorrectInstancesOfThisLetter = CalculatePreviousIncorrectInstancesOfLetter(i, guessedLetter, guess, answer);
+
+                if (guessedLetter == answer[i])
+                {
+                    continue;
+                }
+
+                if (!answer.Contains(guessedLetter)) {
+                    continue;
+                }
+
+                if (instancesOfThisLetterInAnswer > correctInstancesOfThisLetter + previousIncorrectInstancesOfThisLetter)
                 {
                     guessResult.LetterResults[i] = LetterResult.IncorrectLocation;
                 }
+                else
+                {
+                    guessResult.LetterResults[i] = LetterResult.IncorrectLetter;
+                }
+                
             }
+        }
+
+        private static int CalculateCorrectInstancesOfLetter(char letter, string guessedWord, string answerWord)
+        {
+            int correctInstancesOfLetter = 0;
+            for (int i = 0; i < answerWord.Length; i++)
+            {
+                if (letter ==  answerWord[i] && guessedWord[i] == answerWord[i])
+                {
+                    correctInstancesOfLetter++;
+                }
+            }
+            return correctInstancesOfLetter;
+        }
+
+        private static int CalculatePreviousIncorrectInstancesOfLetter(int index, char letter, string guessedWord, string answerWord)
+        {
+            int previousIncorrectInstancesOfLetter = 0;
+            for (int i = 0; i < index; i++)
+            {
+                if (letter != answerWord[i] && letter == guessedWord[i])
+                {
+                    previousIncorrectInstancesOfLetter++;
+                }
+            }
+            return previousIncorrectInstancesOfLetter;
         }
     }
 }

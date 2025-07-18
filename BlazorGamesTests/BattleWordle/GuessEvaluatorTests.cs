@@ -42,11 +42,82 @@ namespace BlazorGamesTests.BattleWordle
         }
 
         [Fact]
-        public void SecondIncorrectLocationIsMissingIfFirstInstanceOfLetterIsCorrect()
+        public void FirstCorrectLocationIsCorrectEvenIfLetterGuessedTwice()
         {
             GuessResult guessResult = GuessEvaluator.Evaluate("ALOHA", "ALIBI");
             Assert.Equal(LetterResult.CorrectLocation, guessResult.LetterResults[0]);
+        }
+
+        [Fact]
+        public void CorrectLocationIsCorrectEvenIfLetterGuessedTwiceAndIncorrectGuessComesFirst()
+        {
+            GuessResult guessResult = GuessEvaluator.Evaluate("ALOHA", "FLORA");
+            Assert.Equal(LetterResult.CorrectLocation, guessResult.LetterResults[4]);
+        }
+
+        [Fact]
+        public void IncorrectLocationIsMissingIfFirstInstanceOfLetterIsCorrect()
+        {
+            GuessResult guessResult = GuessEvaluator.Evaluate("ALOHA", "ALIBI");
             Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[4]);
+        }
+
+        [Fact]
+        public void FirstIncorrectLocationIsIncorrectIfOnlyOneInstanceOfLetterInAnswer()
+        {
+            GuessResult guessResult = GuessEvaluator.Evaluate("ALOHA", "START");
+            Assert.Equal(LetterResult.IncorrectLocation, guessResult.LetterResults[0]);
+        }
+
+        [Fact]
+        public void SecondIncorrectLocationIsMissingIfOnlyOneInstanceOfLetterInAnswer()
+        {
+            GuessResult guessResult = GuessEvaluator.Evaluate("ALOHA", "START");
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[4]);
+        }
+
+        [Fact]
+        public void CorrectlyEvaluateAlohaAgainstStart()
+        {
+            GuessResult guessResult = GuessEvaluator.Evaluate("ALOHA", "START");
+            Assert.Equal(LetterResult.IncorrectLocation, guessResult.LetterResults[0]);
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[1]);
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[2]);
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[3]);
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[4]);
+        }
+
+        [Fact]
+        public void CorrectlyEvaluateStartAgainstPetty()
+        {
+            GuessResult guessResult = GuessEvaluator.Evaluate("START", "PETTY");
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[0]);
+            Assert.Equal(LetterResult.IncorrectLocation, guessResult.LetterResults[1]);
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[2]);
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[3]);
+            Assert.Equal(LetterResult.IncorrectLocation, guessResult.LetterResults[4]);
+        }
+
+        [Fact]
+        public void CorrectlyEvaluateStartAgainstRusty()
+        {
+            GuessResult guessResult = GuessEvaluator.Evaluate("START", "RUSTY");
+            Assert.Equal(LetterResult.IncorrectLocation, guessResult.LetterResults[0]);
+            Assert.Equal(LetterResult.IncorrectLocation, guessResult.LetterResults[1]);
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[2]);
+            Assert.Equal(LetterResult.IncorrectLocation, guessResult.LetterResults[3]);
+            Assert.Equal(LetterResult.IncorrectLetter, guessResult.LetterResults[4]);
+        }
+
+        [Fact]
+        public void CorrectlyEvaluateStartAgainstStart()
+        {
+            GuessResult guessResult = GuessEvaluator.Evaluate("START", "START");
+            Assert.Equal(LetterResult.CorrectLocation, guessResult.LetterResults[0]);
+            Assert.Equal(LetterResult.CorrectLocation, guessResult.LetterResults[1]);
+            Assert.Equal(LetterResult.CorrectLocation, guessResult.LetterResults[2]);
+            Assert.Equal(LetterResult.CorrectLocation, guessResult.LetterResults[3]);
+            Assert.Equal(LetterResult.CorrectLocation, guessResult.LetterResults[4]);
         }
     }
 }
