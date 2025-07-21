@@ -1,0 +1,16 @@
+﻿<div class="row keyboard-row">
+	@foreach (char letter in RowLettersString)
+	{
+		<KeyboardKeyView Letter="@letter" OnClickEventCallback="HandleKeyClick" />
+	}
+</div>
+
+@code {
+	[Parameter] public required string RowLettersString { get; set; }
+	[Parameter] public EventCallback<char> OnClickEventCallback { get; set; }
+
+	private async Task HandleKeyClick(char letter)
+	{
+		await OnClickEventCallback.InvokeAsync(letter);
+	}
+}

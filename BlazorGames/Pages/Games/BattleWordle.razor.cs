@@ -2,5 +2,16 @@
 {
     public partial class BattleWordle
     {
+        public string AnswerWord { get; set; } = "ALO";
+
+        private void OnKeyboardLetterClicked(char letter)
+        {
+            AddLetterToAnswerWord(letter);
+        }
+
+        public void AddLetterToAnswerWord(char letter)
+        {
+            AnswerWord = $"{AnswerWord}{letter}";
+        }
     }
 }

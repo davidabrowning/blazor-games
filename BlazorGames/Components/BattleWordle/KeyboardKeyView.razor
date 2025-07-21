@@ -1,0 +1,13 @@
+﻿@using BlazorGames.Models.BattleWordle;
+
+<div class="keyboard-key" @onclick="HandleClick">@Letter</div>
+
+@code {
+	[Parameter] public char Letter { get; set; }
+	[Parameter] public EventCallback<char> OnClickEventCallback { get; set;  }
+
+	private async Task HandleClick()
+	{
+		await OnClickEventCallback.InvokeAsync(Letter);
+	}
+}
