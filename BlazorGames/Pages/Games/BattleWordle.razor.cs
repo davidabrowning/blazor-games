@@ -2,7 +2,7 @@
 {
     public partial class BattleWordle
     {
-        public string AnswerWord { get; set; } = "ALO";
+        public string AnswerWord { get; set; } = string.Empty;
 
         private void OnKeyboardLetterClicked(char letter)
         {
