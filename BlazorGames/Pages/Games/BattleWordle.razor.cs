@@ -1,41 +1,29 @@
 ﻿using BlazorGames.GameLogic.BattleWordle;
+using BlazorGames.Models.BattleWordle;
 
 namespace BlazorGames.Pages.Games
 {
     public partial class BattleWordle
     {
-        private readonly WordEvaluator _wordEvaluator;
-        public string AnswerWord { get; set; } = string.Empty;
+        private readonly GameManager _gameManager;
+        public int MaxGuesses { get { return _gameManager.MaxGuesses; } }
+        public string AnswerWord { get { return _gameManager.AnswerWord; } }
+        public string GuessWord { get { return _gameManager.GuessWord; } }
+        public GamePhase CurrentGamePhase { get { return _gameManager.CurrentGamePhase; } }
 
-        public BattleWordle(WordEvaluator wordEvaluator)
+        public BattleWordle(GameManager gameManager)
         {
-               _wordEvaluator = wordEvaluator;
+            _gameManager = gameManager;
         }
 
         private void OnKeyboardLetterClicked(char letter)
         {
-            AddLetterToAnswerWord(letter);
+            _gameManager.HandleLetterClick(letter);
         }
 
-        private void AddLetterToAnswerWord(char letter)
+        private async Task HandleSubmitClick()
         {
-            if (AnswerWord.Length == 5)
-            {
-                AnswerWord = AnswerWord.Substring(1);
-            }
-            AnswerWord = $"{AnswerWord}{letter}";
-        }
-
-        private async Task TryStartGame()
-        {
-            if (await _wordEvaluator.Evaluate(AnswerWord))
-            {
-                
-            }
-            else
-            {
-                AnswerWord = string.Empty;
-            }
+            await _gameManager.HandleSubmitClick();
         }
     }
 }
