@@ -1,8 +1,16 @@
-﻿namespace BlazorGames.Pages.Games
+﻿using BlazorGames.GameLogic.BattleWordle;
+
+namespace BlazorGames.Pages.Games
 {
     public partial class BattleWordle
     {
+        private readonly WordEvaluator _wordEvaluator;
         public string AnswerWord { get; set; } = string.Empty;
+
+        public BattleWordle(WordEvaluator wordEvaluator)
+        {
+               _wordEvaluator = wordEvaluator;
+        }
 
         private void OnKeyboardLetterClicked(char letter)
         {
@@ -18,9 +26,16 @@
             AnswerWord = $"{AnswerWord}{letter}";
         }
 
-        private void TryStartGame()
+        private async Task TryStartGame()
         {
-           // Not yet implemented
+            if (await _wordEvaluator.Evaluate(AnswerWord))
+            {
+                
+            }
+            else
+            {
+                AnswerWord = string.Empty;
+            }
         }
     }
 }
