@@ -9,13 +9,18 @@
             AddLetterToAnswerWord(letter);
         }
 
-        public void AddLetterToAnswerWord(char letter)
+        private void AddLetterToAnswerWord(char letter)
         {
             if (AnswerWord.Length == 5)
             {
                 AnswerWord = AnswerWord.Substring(1);
             }
             AnswerWord = $"{AnswerWord}{letter}";
+        }
+
+        private void TryStartGame()
+        {
+           // Not yet implemented
         }
     }
 }
