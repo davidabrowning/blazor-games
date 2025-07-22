@@ -1,0 +1,12 @@
+﻿@using BlazorGames.Models.BattleWordle
+
+<div class="row answer-input-row">
+	@for (int i = 0; i < 5; i++)
+	{
+		<div class="answer-input-letter">@(AnswerWord.Length > i ? AnswerWord[i] : "")</div>
+	}
+</div>
+
+@code {
+	[Parameter] public required string AnswerWord { get; set; }
+}

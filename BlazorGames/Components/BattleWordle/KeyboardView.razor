@@ -1,0 +1,22 @@
+﻿<KeyboardRowView RowLettersString="QWERTYUIOP" OnClickEventCallback="HandleKeyClick" />
+<KeyboardRowView RowLettersString="ASDFGHJKL" OnClickEventCallback="HandleKeyClick" />
+<KeyboardRowView RowLettersString="ZXCVBNM" OnClickEventCallback="HandleKeyClick" />
+
+<div class="row keyboard-row answer-submit-row">
+	<div class="keyboard-submit" @onclick="HandleSubmitClick">Submit</div>
+</div>
+
+@code {
+	[Parameter] public EventCallback<char> KeyClickEventCallback { get; set; }
+	[Parameter] public EventCallback SubmitEventCallback { get; set; }
+
+	private async Task HandleKeyClick(char letter)
+	{
+		await KeyClickEventCallback.InvokeAsync(letter);
+	}
+
+	private async Task HandleSubmitClick()
+	{
+		await SubmitEventCallback.InvokeAsync();
+	}
+}

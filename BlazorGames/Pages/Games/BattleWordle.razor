@@ -8,30 +8,12 @@
 
 <h3>Player 1, please enter a word:</h3>
 
-<div class="row answer-input-row @(CurrentGamePhase == GamePhase.WordSelection ? "" : "d-none")">
-	@for (int i = 0; i < 5; i++)
-	{
-		<div class="answer-input-letter">@(AnswerWord.Length > i ? AnswerWord[i] : "")</div>
-	}
+<div class="@(CurrentGamePhase == GamePhase.WordSelection ? "" : "d-none")">
+	<WordSelectionView AnswerWord="@AnswerWord" />
 </div>
 
-<div class="row guess-display-section @(CurrentGamePhase == GamePhase.Guessing ? "" : "d-none")">
-	@for (int i = 0; i < MaxGuesses; i++)
-	{
-		<div class="row guess-display-row">
-			@for (int j = 0; j < 5; j++)
-			{
-				<div class="guess-input-letter">@(GuessWord.Length > j ? GuessWord[j] : "")</div>
-			}
-		</div>
-	}
-
+<div class="@(CurrentGamePhase == GamePhase.Guessing ? "" : "d-none")">
+	<WordGuessingView GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" />
 </div>
 
-<KeyboardRowView RowLettersString="QWERTYUIOP" OnClickEventCallback="OnKeyboardLetterClicked" />
-<KeyboardRowView RowLettersString="ASDFGHJKL" OnClickEventCallback="OnKeyboardLetterClicked" />
-<KeyboardRowView RowLettersString="ZXCVBNM" OnClickEventCallback="OnKeyboardLetterClicked" />
-
-<div class="row keyboard-row answer-submit-row">
-	<div class="keyboard-submit" @onclick="HandleSubmitClick">Submit</div>
-</div>
+<KeyboardView KeyClickEventCallback="OnKeyboardLetterClicked" SubmitEventCallback="HandleSubmitClick" />
