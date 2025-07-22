@@ -2,18 +2,16 @@
 @using BlazorGames.GameLogic.BattleWordle
 
 <div class="row guess-display-section">
-	@for (int i = 0; i < Guesses.Count; i++)
+	@foreach (GuessResult guessResult in GuessResults)
 	{
-		string historicalGuess = Guesses[i];
-		GuessResult guessResult = GuessEvaluator.Evaluate(historicalGuess, AnswerWord);
 		<div class="row guess-display-row">
 			@for (int j = 0; j < 5; j++)
 			{
-				<div class="guess-input-letter guess-input-letter-@guessResult.LetterResults[j]">@historicalGuess[j]</div>
+				<div class="guess-input-letter guess-input-letter-@guessResult.LetterResults[j]">@guessResult.GuessedWord[j]</div>
 			}
 		</div>
 	}
-	@if (Guesses.Count < MaxGuesses)
+	@if (GuessResults.Count < MaxGuesses)
 	{
 		<div class="row guess-display-row">
 			@for (int j = 0; j < 5; j++)
@@ -22,7 +20,7 @@
 			}
 		</div>
 	}
-	@for (int i = Guesses.Count + 1; i < MaxGuesses; i++)
+	@for (int i = GuessResults.Count + 1; i < MaxGuesses; i++)
 	{
 	<div class="row guess-display-row">
 			@for (int j = 0; j < 5; j++)
@@ -38,5 +36,5 @@
 	[Parameter] public required int MaxGuesses { get; set; }
 	[Parameter] public required string GuessWord { get; set; }
 	[Parameter] public required string AnswerWord { get; set; }
-	[Parameter] public required List<string> Guesses { get; set; }
+	[Parameter] public required List<GuessResult> GuessResults { get; set; }
 }

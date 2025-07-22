@@ -6,7 +6,7 @@ namespace BlazorGames.GameLogic.BattleWordle
     {
         public static GuessResult Evaluate(string guess, string answer)
         {
-            GuessResult guessResult = new(answer.Length);
+            GuessResult guessResult = new(guess);
 
             CheckForCorrectLetters(guessResult, guess, answer);
             CheckForMissingLetters(guessResult, guess, answer);
@@ -17,7 +17,7 @@ namespace BlazorGames.GameLogic.BattleWordle
 
         private static void CheckForCorrectLetters(GuessResult guessResult, string guess, string answer)
         {
-            for (int i = 0; i < guessResult.WordLength; i++)
+            for (int i = 0; i < guessResult.GuessedWord.Length; i++)
             {
                 if (guess[i] == answer[i])
                 {
@@ -28,7 +28,7 @@ namespace BlazorGames.GameLogic.BattleWordle
 
         private static void CheckForMissingLetters(GuessResult guessResult, string guess, string answer)
         {
-            for (int i = 0; i < guessResult.WordLength; i++)
+            for (int i = 0; i < guessResult.GuessedWord.Length; i++)
             {
                 if (!answer.Contains(guess[i]))
                 {
@@ -39,7 +39,7 @@ namespace BlazorGames.GameLogic.BattleWordle
 
         private static void CheckForIncorrectLocations(GuessResult guessResult, string guess, string answer)
         {
-            for (int i = 0; i < guessResult.WordLength; i++)
+            for (int i = 0; i < guessResult.GuessedWord.Length; i++)
             {
                 char guessedLetter = guess[i];
                 int instancesOfThisLetterInAnswer = answer.Count(letter => letter == guessedLetter);

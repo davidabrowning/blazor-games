@@ -8,14 +8,14 @@ namespace BlazorGamesTests.BattleWordle
         [Fact]
         public void GuessResultHasIntendedNumberOfLetters()
         {
-            GuessResult result = new(3);
-            Assert.Equal(3, result.WordLength);
+            GuessResult result = new("HAT");
+            Assert.Equal(3, result.GuessedWord.Length);
         }
 
         [Fact]
         public void GuessResultIsCorrectIfAllLettersAreCorrect()
         {
-            GuessResult guessResult = new(1);
+            GuessResult guessResult = new("A");
             guessResult.LetterResults[0] = LetterResult.CorrectLocation;
             Assert.True(guessResult.IsCorrect());
         }
@@ -23,7 +23,7 @@ namespace BlazorGamesTests.BattleWordle
         [Fact]
         public void GuessResultIsIncorrectIfAllLettersIncorrect()
         {
-            GuessResult guessResult = new(2);
+            GuessResult guessResult = new("TO");
             guessResult.LetterResults[0] = LetterResult.IncorrectLetter;
             guessResult.LetterResults[1] = LetterResult.IncorrectLetter;
             Assert.False(guessResult.IsCorrect());

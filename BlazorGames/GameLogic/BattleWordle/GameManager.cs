@@ -11,7 +11,7 @@ namespace BlazorGames.GameLogic.BattleWordle
 
         public string AnswerWord { get; set; } = string.Empty;
         public string GuessWord { get; set; } = string.Empty;
-        public List<string> Guesses { get; private set; } = new();
+        public List<GuessResult> GuessResults { get; private set; } = new();
         public GamePhase CurrentGamePhase { get; private set; } = GamePhase.WordSelection;
 
         public GameManager(WordEvaluator wordEvaluator)
@@ -94,15 +94,15 @@ namespace BlazorGames.GameLogic.BattleWordle
                 return;
             }
 
-            Guesses.Add(GuessWord);
+            GuessResults.Add(GuessEvaluator.Evaluate(GuessWord, AnswerWord));
             GuessWord = string.Empty;
 
-            if (Guesses.Last() == AnswerWord)
+            if (GuessResults.Last().GuessedWord == AnswerWord)
             {
                 CurrentGamePhase = GamePhase.GameOver;
             }
 
-            if (Guesses.Count == MaxGuesses)
+            if (GuessResults.Count == MaxGuesses)
             {
                 CurrentGamePhase = GamePhase.GameOver;
             }

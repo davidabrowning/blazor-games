@@ -17,7 +17,7 @@ namespace BlazorGamesTests.BattleWordle
         [Fact]
         public void GuessingHasStartedIsInitiallyFalse()
         {
-            Assert.False(_gameManager.GuessingHasStarted);
+            Assert.False(_gameManager.CurrentGamePhase == GamePhase.Guessing);
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace BlazorGamesTests.BattleWordle
         {
             _gameManager.AnswerWord = "START";
             await _gameManager.HandleSubmitClick();
-            Assert.True(_gameManager.GuessingHasStarted);
+            Assert.True(_gameManager.CurrentGamePhase == GamePhase.Guessing);
         }
     }
 }
