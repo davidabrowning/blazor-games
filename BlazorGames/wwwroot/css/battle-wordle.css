@@ -27,7 +27,7 @@
 }
 
 .guess-input-letter-CorrectLocation, .keyboard-key-CorrectLocation {
-    background-color: green;
+    background-color: lightgreen;
 }
 
 .guess-input-letter-IncorrectLocation, .keyboard-key-IncorrectLocation {
@@ -35,7 +35,7 @@
 }
 
 .guess-input-letter-IncorrectLetter, .keyboard-key-IncorrectLetter {
-    background-color: gray;
+    background-color: lightgray;
 }
 
 .keyboard-key-NotEvaluated {
