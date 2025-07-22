@@ -1,13 +1,36 @@
 ﻿@using BlazorGames.Models.BattleWordle;
 
-<div class="keyboard-key" @onclick="HandleClick">@Letter</div>
+<div class="keyboard-key keyboard-key-@BestLetterResult" @onclick="HandleClick">@Letter</div>
 
 @code {
+	public LetterResult BestLetterResult { get { return CalculateBestLetterResult(); } }
 	[Parameter] public char Letter { get; set; }
-	[Parameter] public EventCallback<char> OnClickEventCallback { get; set;  }
+	[Parameter] public required IEnumerable<GuessResult> GuessResults { get; set; }
+	[Parameter] public EventCallback<char> OnClickEventCallback { get; set; }
 
 	private async Task HandleClick()
 	{
 		await OnClickEventCallback.InvokeAsync(Letter);
+	}
+
+	private LetterResult CalculateBestLetterResult()
+	{
+		LetterResult bestLetterResult = LetterResult.NotEvaluated;
+		foreach (GuessResult guessResult in GuessResults)
+		{
+			for (int letterIndex = 0; letterIndex < guessResult.GuessedWord.Length; letterIndex++)
+			{
+				if (guessResult.GuessedWord[letterIndex] != Letter)
+				{
+					continue;
+				}
+				LetterResult thisLetterResult = guessResult.LetterResults[letterIndex];
+				if ((int)thisLetterResult > (int)bestLetterResult)
+				{
+					bestLetterResult = thisLetterResult;
+				}
+			}
+		}
+		return bestLetterResult;
 	}
 }

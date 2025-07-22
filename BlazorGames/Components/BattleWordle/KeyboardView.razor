@@ -1,12 +1,15 @@
-﻿<KeyboardRowView RowLettersString="QWERTYUIOP" OnClickEventCallback="HandleKeyClick" />
-<KeyboardRowView RowLettersString="ASDFGHJKL" OnClickEventCallback="HandleKeyClick" />
-<KeyboardRowView RowLettersString="ZXCVBNM" OnClickEventCallback="HandleKeyClick" />
+﻿@using BlazorGames.Models.BattleWordle
+
+<KeyboardRowView RowLettersString="QWERTYUIOP" GuessResults="@GuessResults" OnClickEventCallback="HandleKeyClick" />
+<KeyboardRowView RowLettersString="ASDFGHJKL" GuessResults="@GuessResults" OnClickEventCallback="HandleKeyClick" />
+<KeyboardRowView RowLettersString="ZXCVBNM" GuessResults="@GuessResults" OnClickEventCallback="HandleKeyClick" />
 
 <div class="row keyboard-row answer-submit-row">
 	<div class="keyboard-submit" @onclick="HandleSubmitClick">Submit</div>
 </div>
 
 @code {
+	[Parameter] public required List<GuessResult> GuessResults { get; set; }
 	[Parameter] public EventCallback<char> KeyClickEventCallback { get; set; }
 	[Parameter] public EventCallback SubmitEventCallback { get; set; }
 

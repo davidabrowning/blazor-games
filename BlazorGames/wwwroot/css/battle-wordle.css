@@ -26,14 +26,18 @@
     margin: 0.1%;
 }
 
-.guess-input-letter-CorrectLocation {
+.guess-input-letter-CorrectLocation, .keyboard-key-CorrectLocation {
     background-color: green;
 }
 
-.guess-input-letter-IncorrectLocation {
+.guess-input-letter-IncorrectLocation, .keyboard-key-IncorrectLocation {
     background-color: yellow;
 }
 
-.guess-input-letter-IncorrectLetter {
+.guess-input-letter-IncorrectLetter, .keyboard-key-IncorrectLetter {
     background-color: gray;
+}
+
+.keyboard-key-NotEvaluated {
+    background-color: white;
 }

@@ -3,8 +3,10 @@
     public enum LetterResult
     {
         NotEvaluated = 0,
-        CorrectLocation = 1,
+        IncorrectLetter = 1,
         IncorrectLocation = 2,
-        IncorrectLetter = 3,
+        CorrectLocation = 3,
+        
+        
     }
 }
