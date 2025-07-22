@@ -25,3 +25,15 @@
     border: 1px solid black;
     margin: 0.1%;
 }
+
+.guess-input-letter-CorrectLocation {
+    background-color: green;
+}
+
+.guess-input-letter-IncorrectLocation {
+    background-color: yellow;
+}
+
+.guess-input-letter-IncorrectLetter {
+    background-color: gray;
+}

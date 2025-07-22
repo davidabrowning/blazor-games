@@ -15,7 +15,7 @@
 
 @if (CurrentGamePhase == GamePhase.Guessing)
 {
-	<WordGuessingView GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" Guesses="@Guesses" />
+	<WordGuessingView AnswerWord="@AnswerWord" GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" Guesses="@Guesses" />
 }
 
 <KeyboardView KeyClickEventCallback="OnKeyboardLetterClicked" SubmitEventCallback="HandleSubmitClick" />

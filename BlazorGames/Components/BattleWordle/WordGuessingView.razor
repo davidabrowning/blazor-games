@@ -1,12 +1,15 @@
 ﻿@using BlazorGames.Models.BattleWordle
+@using BlazorGames.GameLogic.BattleWordle
 
 <div class="row guess-display-section">
 	@for (int i = 0; i < Guesses.Count; i++)
 	{
+		string historicalGuess = Guesses[i];
+		GuessResult guessResult = GuessEvaluator.Evaluate(historicalGuess, AnswerWord);
 		<div class="row guess-display-row">
-			@foreach (char letter in Guesses[i])
+			@for (int j = 0; j < 5; j++)
 			{
-				<div class="guess-input-letter">@letter</div>
+				<div class="guess-input-letter guess-input-letter-@guessResult.LetterResults[j]">@historicalGuess[j]</div>
 			}
 		</div>
 	}
@@ -34,5 +37,6 @@
 @code {
 	[Parameter] public required int MaxGuesses { get; set; }
 	[Parameter] public required string GuessWord { get; set; }
+	[Parameter] public required string AnswerWord { get; set; }
 	[Parameter] public required List<string> Guesses { get; set; }
 }
