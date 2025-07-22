@@ -18,4 +18,7 @@
 	<WordGuessingView AnswerWord="@AnswerWord" GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" GuessResults="@GuessResults" />
 }
 
-<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" SubmitEventCallback="HandleSubmitClick" />
+@if (CurrentGamePhase != GamePhase.GameOver)
+{
+	<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" SubmitEventCallback="HandleSubmitClick" />
+}
