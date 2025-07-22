@@ -1,7 +1,16 @@
 ﻿@using BlazorGames.Models.BattleWordle
 
 <div class="row guess-display-section">
-	@for (int i = 0; i < MaxGuesses; i++)
+	@for (int i = 0; i < Guesses.Count; i++)
+	{
+		<div class="row guess-display-row">
+			@foreach (char letter in Guesses[i])
+			{
+				<div class="guess-input-letter">@letter</div>
+			}
+		</div>
+	}
+	@if (Guesses.Count < MaxGuesses)
 	{
 		<div class="row guess-display-row">
 			@for (int j = 0; j < 5; j++)
@@ -10,9 +19,20 @@
 			}
 		</div>
 	}
+	@for (int i = Guesses.Count + 1; i < MaxGuesses; i++)
+	{
+	<div class="row guess-display-row">
+			@for (int j = 0; j < 5; j++)
+			{
+				<div class="guess-input-letter"></div>
+			}
+		</div>
+	}
+
 </div>
 
 @code {
 	[Parameter] public required int MaxGuesses { get; set; }
 	[Parameter] public required string GuessWord { get; set; }
+	[Parameter] public required List<string> Guesses { get; set; }
 }
