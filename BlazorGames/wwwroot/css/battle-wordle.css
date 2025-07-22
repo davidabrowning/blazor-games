@@ -2,7 +2,7 @@
 
 }
 
-.answer-input-row, .guess-display-row, .keyboard-row {
+.answer-input-row, .guess-display-row, .answer-reveal-row, .keyboard-row {
     justify-content: center;
 }
 
@@ -10,19 +10,20 @@
     margin-bottom: 4rem;
 }
 
-.answer-input-letter, .guess-input-letter, .keyboard-key {
+.answer-input-letter, .guess-input-letter, .answer-reveal-letter, .keyboard-key {
     width: 4%;
     aspect-ratio: 1 / 1;
 }
 
 .keyboard-submit {
-    width: 25%;
+    width: 16%;
     aspect-ratio: 4 / 1;
     text-align: center;
 }
 
-.answer-input-letter, .guess-input-letter, .keyboard-key, .keyboard-submit {
+.answer-input-letter, .guess-input-letter, .answer-reveal-letter, .keyboard-key, .keyboard-submit {
     border: 1px solid black;
+    border-radius: 5px;
     margin: 0.1%;
 }
 
@@ -36,6 +37,10 @@
 
 .guess-input-letter-IncorrectLetter, .keyboard-key-IncorrectLetter {
     background-color: lightgray;
+}
+
+.answer-reveal-letter {
+    background-color: lightskyblue;
 }
 
 .keyboard-key-NotEvaluated {

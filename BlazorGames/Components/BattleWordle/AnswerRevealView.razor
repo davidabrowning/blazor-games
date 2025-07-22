@@ -1,0 +1,12 @@
+﻿<div class="row guess-display-section">
+	<div class="row answer-reveal-row">
+		@foreach (char letter in AnswerWord)
+		{
+			<div class="answer-reveal-letter">@letter</div>
+		}
+	</div>
+</div>
+
+@code {
+	[Parameter] public required string AnswerWord { get; set; }
+}

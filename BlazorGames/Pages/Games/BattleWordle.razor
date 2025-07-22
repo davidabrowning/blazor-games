@@ -16,6 +16,11 @@
 	<WordGuessingView AnswerWord="@AnswerWord" GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" GuessResults="@GuessResults" />
 }
 
+@if (CurrentGamePhase == GamePhase.GameOver && !GuessResults.Last().IsCorrect())
+{
+	<AnswerRevealView AnswerWord="@AnswerWord" />
+}
+
 @if (CurrentGamePhase != GamePhase.GameOver)
 {
 	<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" SubmitEventCallback="HandleSubmitClick" />
