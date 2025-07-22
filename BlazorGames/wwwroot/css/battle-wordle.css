@@ -6,12 +6,12 @@
     justify-content: center;
 }
 
-.answer-input-row, .guess-display-row {
+.answer-input-row, .guess-display-section {
     margin-bottom: 4rem;
 }
 
 .answer-input-letter, .guess-input-letter, .keyboard-key {
-    width: 9%;
+    width: 4%;
     aspect-ratio: 1 / 1;
 }
 
