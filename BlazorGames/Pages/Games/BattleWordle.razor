@@ -8,12 +8,14 @@
 
 <h3>Player 1, please enter a word:</h3>
 
-<div class="@(CurrentGamePhase == GamePhase.WordSelection ? "" : "d-none")">
+@if (CurrentGamePhase == GamePhase.WordSelection)
+{
 	<WordSelectionView AnswerWord="@AnswerWord" />
-</div>
+}
 
-<div class="@(CurrentGamePhase == GamePhase.Guessing ? "" : "d-none")">
+@if (CurrentGamePhase == GamePhase.Guessing)
+{
 	<WordGuessingView GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" />
-</div>
+}
 
 <KeyboardView KeyClickEventCallback="OnKeyboardLetterClicked" SubmitEventCallback="HandleSubmitClick" />
