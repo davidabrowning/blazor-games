@@ -13,6 +13,13 @@
 }
 else
 {
+	<div class="top-row px-4">
+		<div class="d-grid d-md-flex justify-content-md-end">
+			<button class="btn btn-link @(CurrentGamePhase == GamePhase.WordSelection ? "d-none" : "")" @onclick="() => EndGame()">Restart</button>
+			<button class="btn btn-link" @onclick="() => ToggleInstructions()">How to play</button>
+		</div>
+	</div>
+
 	@if (CurrentGamePhase == GamePhase.WordSelection)
 	{
 		<WordSelectionView AnswerWord="@AnswerWord" />

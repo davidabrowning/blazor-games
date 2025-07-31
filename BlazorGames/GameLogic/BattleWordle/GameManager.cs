@@ -19,6 +19,14 @@ namespace BlazorGames.GameLogic.BattleWordle
             _wordEvaluator = wordEvaluator;
         }
 
+        public void EndGame()
+        {
+            AnswerWord = string.Empty;
+            GuessWord = string.Empty;
+            GuessResults = new();
+            CurrentGamePhase = GamePhase.WordSelection;
+        }
+
         public void HandleLetterClick(char letter)
         {
             if (CurrentGamePhase == GamePhase.WordSelection)

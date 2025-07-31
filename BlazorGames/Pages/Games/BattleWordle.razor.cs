@@ -32,5 +32,10 @@ namespace BlazorGames.Pages.Games
         {
             ShowInstructions = !ShowInstructions;
         }
+
+        private void EndGame()
+        {
+            _gameManager.EndGame();
+        }
     }
 }
