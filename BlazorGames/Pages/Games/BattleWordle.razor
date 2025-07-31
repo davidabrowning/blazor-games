@@ -5,23 +5,31 @@
 <PageTitle>Stockholm Games: Battle Wordle</PageTitle>
 
 <link rel="stylesheet" href="css/battle-wordle.css" />
+<link rel="stylesheet" href="css/instructions.css" />
 
-@if (CurrentGamePhase == GamePhase.WordSelection)
+@if (ShowInstructions)
 {
-	<WordSelectionView AnswerWord="@AnswerWord" />
+	<InstructionsView OnClickEventCallback="ToggleInstructions" />
 }
-
-@if (CurrentGamePhase == GamePhase.Guessing || CurrentGamePhase == GamePhase.GameOver)
+else
 {
-	<WordGuessingView AnswerWord="@AnswerWord" GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" GuessResults="@GuessResults" />
-}
+	@if (CurrentGamePhase == GamePhase.WordSelection)
+	{
+		<WordSelectionView AnswerWord="@AnswerWord" />
+	}
 
-@if (CurrentGamePhase == GamePhase.GameOver && !GuessResults.Last().IsCorrect())
-{
-	<AnswerRevealView AnswerWord="@AnswerWord" />
-}
+	@if (CurrentGamePhase == GamePhase.Guessing || CurrentGamePhase == GamePhase.GameOver)
+	{
+		<WordGuessingView AnswerWord="@AnswerWord" GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" GuessResults="@GuessResults" />
+	}
 
-@if (CurrentGamePhase != GamePhase.GameOver)
-{
-	<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" SubmitEventCallback="HandleSubmitClick" />
+	@if (CurrentGamePhase == GamePhase.GameOver && !GuessResults.Last().IsCorrect())
+	{
+		<AnswerRevealView AnswerWord="@AnswerWord" />
+	}
+
+	@if (CurrentGamePhase != GamePhase.GameOver)
+	{
+		<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" SubmitEventCallback="HandleSubmitClick" />
+	}
 }

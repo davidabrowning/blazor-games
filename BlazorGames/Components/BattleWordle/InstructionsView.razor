@@ -1,0 +1,45 @@
+﻿@using BlazorGames.Models.BattleWordle
+
+<div class="text-center" id="instructions-container">
+	<h3 class="mt-4">How to play Battle Worlde</h3>
+	<div class="mb-5">
+		<p class="mb-4">Derivative of Josh Wardle's Wordle game, which you can play at <a href="https://www.nytimes.com/games/">New York Times Games</a>.</p>
+		<h5>Rules</h5>
+		<p>Player 1: Choose a five-letter word.</p>
+		<p>Player 2: Has 5 chances to guess the word.</p>
+		<p>Correct letters are shown in yellow.</p>
+		<p>Correct letters in the correct location are green.</p>
+	</div>
+	<h5>A guess with one letter in the incorrect location:</h5>
+	<div class="row guess-display-row mb-4">
+		<div class="guess-input-letter guess-input-letter-IncorrectLocation">T</div>
+		<div class="guess-input-letter guess-input-letter-IncorrectLetter">H</div>
+		<div class="guess-input-letter guess-input-letter-IncorrectLetter">I</div>
+		<div class="guess-input-letter guess-input-letter-IncorrectLetter">N</div>
+		<div class="guess-input-letter guess-input-letter-IncorrectLetter">G</div>
+	</div>
+	<h5>A guess with three letters in the correct locations:</h5>
+	<div class="row guess-display-row mb-4">
+		<div class="guess-input-letter guess-input-letter-CorrectLocation">S</div>
+		<div class="guess-input-letter guess-input-letter-IncorrectLetter">P</div>
+		<div class="guess-input-letter guess-input-letter-IncorrectLetter">O</div>
+		<div class="guess-input-letter guess-input-letter-CorrectLocation">R</div>
+		<div class="guess-input-letter guess-input-letter-CorrectLocation">T</div>
+	</div>
+	<h5>A correct guess:</h5>
+	<div class="row guess-display-row mb-4">
+		<div class="guess-input-letter guess-input-letter-CorrectLocation">S</div>
+		<div class="guess-input-letter guess-input-letter-CorrectLocation">T</div>
+		<div class="guess-input-letter guess-input-letter-CorrectLocation">A</div>
+		<div class="guess-input-letter guess-input-letter-CorrectLocation">R</div>
+		<div class="guess-input-letter guess-input-letter-CorrectLocation">T</div>
+	</div>
+	<div class="text-center justify-content-center">
+		<button class="btn btn-lg btn-outline-primary" @onclick="@OnClickEventCallback">Play</button>
+	</div>
+</div>
+
+
+@code {
+	[Parameter] public EventCallback OnClickEventCallback { get; set; }
+}

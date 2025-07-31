@@ -11,6 +11,7 @@ namespace BlazorGames.Pages.Games
         public string GuessWord { get { return _gameManager.GuessWord; } }
         public List<GuessResult> GuessResults { get { return _gameManager.GuessResults; } }
         public GamePhase CurrentGamePhase { get { return _gameManager.CurrentGamePhase; } }
+        public bool ShowInstructions { get; set; } = true;
 
         public BattleWordle(GameManager gameManager)
         {
@@ -25,6 +26,11 @@ namespace BlazorGames.Pages.Games
         private async Task HandleSubmitClick()
         {
             await _gameManager.HandleSubmitClick();
+        }
+
+        private void ToggleInstructions()
+        {
+            ShowInstructions = !ShowInstructions;
         }
     }
 }

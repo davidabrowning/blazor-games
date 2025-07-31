@@ -17,10 +17,6 @@
     .player-container .card + .card {
         margin-left: 0rem;
     }
-
-    #instructions-container p {
-        text-align: left;
-    }
 }
 
 @media (min-width: 1001px) {
