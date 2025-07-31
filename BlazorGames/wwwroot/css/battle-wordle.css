@@ -15,13 +15,13 @@
     aspect-ratio: 1 / 1;
 }
 
-.keyboard-submit {
-    width: 16%;
-    aspect-ratio: 4 / 1;
+.keyboard-clear, .keyboard-submit {
+    width: 12%;
+    aspect-ratio: 3 / 1;
     text-align: center;
 }
 
-.answer-input-letter, .guess-input-letter, .answer-reveal-letter, .keyboard-key, .keyboard-submit {
+.answer-input-letter, .guess-input-letter, .answer-reveal-letter, .keyboard-key, .keyboard-clear, .keyboard-submit {
     border: 1px solid black;
     border-radius: 5px;
     margin: 0.1%;
@@ -46,6 +46,6 @@
     background-color: lightskyblue;
 }
 
-.keyboard-submit, .keyboard-key-NotEvaluated {
+.keyboard-clear, .keyboard-submit, .keyboard-key-NotEvaluated {
     background-color: lightgray;
 }

@@ -37,6 +37,6 @@ else
 
 	@if (CurrentGamePhase != GamePhase.GameOver)
 	{
-		<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" SubmitEventCallback="HandleSubmitClick" />
+		<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" ClearEventCallback="HandleClearClick" SubmitEventCallback="HandleSubmitClick" />
 	}
 }

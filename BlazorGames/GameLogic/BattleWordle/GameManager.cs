@@ -58,6 +58,19 @@ namespace BlazorGames.GameLogic.BattleWordle
             GuessWord = $"{GuessWord}{letter}";
         }
 
+        public void HandleClearClick()
+        {
+            if (CurrentGamePhase == GamePhase.WordSelection)
+            {
+                AnswerWord = string.Empty;
+            }
+
+            if (CurrentGamePhase == GamePhase.Guessing)
+            {
+                GuessWord = string.Empty;
+            }
+        }
+
         public async Task HandleSubmitClick()
         {
             if (CurrentGamePhase == GamePhase.WordSelection)

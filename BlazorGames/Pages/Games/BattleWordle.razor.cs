@@ -23,6 +23,11 @@ namespace BlazorGames.Pages.Games
             _gameManager.HandleLetterClick(letter);
         }
 
+        private void HandleClearClick()
+        {
+            _gameManager.HandleClearClick();
+        }
+
         private async Task HandleSubmitClick()
         {
             await _gameManager.HandleSubmitClick();

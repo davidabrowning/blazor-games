@@ -5,17 +5,24 @@
 <KeyboardRowView RowLettersString="ZXCVBNM" GuessResults="@GuessResults" OnClickEventCallback="HandleKeyClick" />
 
 <div class="row keyboard-row answer-submit-row">
+	<div class="keyboard-clear" @onclick="HandleClearClick">Clear</div>
 	<div class="keyboard-submit" @onclick="HandleSubmitClick">Submit</div>
 </div>
 
 @code {
 	[Parameter] public required List<GuessResult> GuessResults { get; set; }
 	[Parameter] public EventCallback<char> KeyClickEventCallback { get; set; }
+	[Parameter] public EventCallback ClearEventCallback { get; set; }
 	[Parameter] public EventCallback SubmitEventCallback { get; set; }
 
 	private async Task HandleKeyClick(char letter)
 	{
 		await KeyClickEventCallback.InvokeAsync(letter);
+	}
+
+	private void HandleClearClick()
+	{
+		ClearEventCallback.InvokeAsync();
 	}
 
 	private async Task HandleSubmitClick()
