@@ -28,21 +28,24 @@
 }
 
 .guess-input-letter-CorrectLocation, .keyboard-key-CorrectLocation {
-    background-color: lightgreen;
+    background-color: green;
+    color: white;
 }
 
 .guess-input-letter-IncorrectLocation, .keyboard-key-IncorrectLocation {
-    background-color: yellow;
+    background-color: darkkhaki;
+    color: white;
 }
 
 .guess-input-letter-IncorrectLetter, .keyboard-key-IncorrectLetter {
-    background-color: lightgray;
+    background-color: gray;
+    color: white;
 }
 
 .answer-reveal-letter {
     background-color: lightskyblue;
 }
 
-.keyboard-key-NotEvaluated {
-    background-color: white;
+.keyboard-submit, .keyboard-key-NotEvaluated {
+    background-color: lightgray;
 }
