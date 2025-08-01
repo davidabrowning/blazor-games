@@ -4,30 +4,15 @@
 <div class="row guess-display-section">
 	@foreach (GuessResult guessResult in GuessResults)
 	{
-		<div class="row guess-display-row">
-			@for (int j = 0; j < 5; j++)
-			{
-				<div class="guess-input-letter guess-input-letter-@guessResult.LetterResults[j]">@guessResult.GuessedWord[j]</div>
-			}
-		</div>
+		<GuessResultView GuessResult="@guessResult" />
 	}
 	@if (GuessResults.Count < MaxGuesses)
 	{
-		<div class="row guess-display-row">
-			@for (int j = 0; j < 5; j++)
-			{
-				<div class="guess-input-letter guess-input-letter-unrevealed">@(GuessWord.Length > j ? GuessWord[j] : "")</div>
-			}
-		</div>
+		<GuessInputView GuessWord="@GuessWord" />
 	}
 	@for (int i = GuessResults.Count + 1; i < MaxGuesses; i++)
 	{
-	<div class="row guess-display-row">
-			@for (int j = 0; j < 5; j++)
-			{
-				<div class="guess-input-letter guess-input-letter-unrevealed"></div>
-			}
-		</div>
+		<GuessRemainingView />
 	}
 
 </div>

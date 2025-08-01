@@ -1,0 +1,33 @@
+﻿@using Models.BattleWordle;
+
+<div class="row guess-display-row">
+	@for (int j = 0; j < 5; j++)
+	{
+		if (j < tilesRevealed || GuessResult.HasBeenRevealedToPlayer)
+		{
+			<div class="guess-input-letter guess-input-letter-@GuessResult.LetterResults[j]">@GuessResult.GuessedWord[j]</div>
+		}
+		else
+		{
+			<div class="guess-input-letter guess-input-letter-unrevealed">@GuessResult.GuessedWord[j]</div>
+		}
+
+	}
+</div>
+
+@code {
+	[Parameter] public required GuessResult GuessResult{ get; set; }
+	private int tilesRevealed = 0;
+
+	protected override async void OnParametersSet()
+	{
+		base.OnParametersSet();
+		while (tilesRevealed < 5)
+		{
+			await Task.Delay(500);
+			tilesRevealed++;
+			StateHasChanged();
+		}
+		GuessResult.HasBeenRevealedToPlayer = true;
+	}
+}

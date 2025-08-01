@@ -1,0 +1,10 @@
+﻿<div class="row guess-display-row">
+	@for (int j = 0; j < 5; j++)
+	{
+		<div class="guess-input-letter guess-input-letter-unrevealed">@(GuessWord.Length > j ? GuessWord[j] : "")</div>
+	}
+</div>
+
+@code {
+	[Parameter] public required string GuessWord { get; set; }
+}

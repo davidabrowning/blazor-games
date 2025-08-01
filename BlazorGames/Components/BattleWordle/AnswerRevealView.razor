@@ -1,12 +1,33 @@
-﻿<div class="row guess-display-section">
+﻿@using Models.BattleWordle;
+
+<div class="row guess-display-section">
 	<div class="row answer-reveal-row">
-		@foreach (char letter in AnswerWord)
+		@for (int i = 0; i < AnswerWord.Length; i++)
 		{
-			<div class="answer-reveal-letter">@letter</div>
+			if (i < tilesRevealed)
+			{
+				<div class="answer-reveal-letter">@AnswerWord[i]</div>
+			}
 		}
 	</div>
 </div>
 
 @code {
 	[Parameter] public required string AnswerWord { get; set; }
+	[Parameter] public required List<GuessResult> GuessResults { get; set; }
+	private int tilesRevealed = 0;
+
+	protected override async void OnParametersSet()
+	{
+		base.OnParametersSet();
+		while (tilesRevealed < 5)
+		{
+			await Task.Delay(500);
+			if (GuessResults.Last().HasBeenRevealedToPlayer)
+			{
+				tilesRevealed++;
+				StateHasChanged();
+			}
+		}
+	}
 }

@@ -4,6 +4,7 @@
     {
         public string GuessedWord { get; set; }
         public List<LetterResult> LetterResults { get; set; } = new();
+        public bool HasBeenRevealedToPlayer { get; set; } = false;
         public GuessResult(string guessedWord)
         {
             GuessedWord = guessedWord;

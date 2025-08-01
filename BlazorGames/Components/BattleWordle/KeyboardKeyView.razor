@@ -8,6 +8,16 @@
 	[Parameter] public required IEnumerable<GuessResult> GuessResults { get; set; }
 	[Parameter] public EventCallback<char> OnClickEventCallback { get; set; }
 
+	protected override async void OnParametersSet()
+	{
+		base.OnParametersSet();
+		while(true)
+		{
+			await Task.Delay(1000);
+			StateHasChanged();
+		}
+	}
+
 	private async Task HandleClick()
 	{
 		await OnClickEventCallback.InvokeAsync(Letter);
@@ -18,6 +28,11 @@
 		LetterResult bestLetterResult = LetterResult.NotEvaluated;
 		foreach (GuessResult guessResult in GuessResults)
 		{
+			if (!guessResult.HasBeenRevealedToPlayer)
+			{
+				continue;
+			}
+
 			for (int letterIndex = 0; letterIndex < guessResult.GuessedWord.Length; letterIndex++)
 			{
 				if (guessResult.GuessedWord[letterIndex] != Letter)
