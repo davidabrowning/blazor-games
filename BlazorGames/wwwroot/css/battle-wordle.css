@@ -11,9 +11,6 @@
     --answer-key-color-text: white;
 }
 
-.guess-display-section {
-}
-
 .answer-input-row, .guess-display-row, .answer-reveal-row, .keyboard-row {
     justify-content: center;
 }
