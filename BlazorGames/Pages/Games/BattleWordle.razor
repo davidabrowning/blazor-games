@@ -39,4 +39,11 @@ else
 	{
 		<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" ClearEventCallback="HandleClearClick" SubmitEventCallback="HandleSubmitClick" />
 	}
+
+	@if (CurrentGamePhase == GamePhase.GameOver)
+	{
+		<div class="text-center justify-content-center">
+			<button class="btn btn-lg btn-outline-primary" @onclick="() => EndGame()">Play Again</button>
+		</div>
+	}
 }

@@ -7,7 +7,7 @@ namespace BlazorGames.GameLogic.BattleWordle
         private readonly WordEvaluator _wordEvaluator;
         private readonly UIManager _uiManager;
 
-        public readonly int MaxGuesses = 5;
+        public readonly int MaxGuesses = 1;
 
         public string AnswerWord { get; set; } = string.Empty;
         public string GuessWord { get; set; } = string.Empty;
