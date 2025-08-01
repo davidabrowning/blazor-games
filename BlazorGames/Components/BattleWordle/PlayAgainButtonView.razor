@@ -1,0 +1,12 @@
+﻿<div class="text-center justify-content-center">
+	<button class="btn btn-lg btn-outline-primary" @onclick="() => InvokePlayAgainEvent()">Play Again</button>
+</div>
+
+@code {
+	[Parameter] public EventCallback PlayAgainEventCallback { get; set; }
+
+	private void InvokePlayAgainEvent()
+	{
+		PlayAgainEventCallback.InvokeAsync();
+	}
+}

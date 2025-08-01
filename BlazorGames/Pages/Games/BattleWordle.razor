@@ -13,37 +13,27 @@
 }
 else
 {
-	<div class="top-row px-4">
-		<div class="d-grid d-md-flex justify-content-md-end">
-			<button class="btn btn-link @(CurrentGamePhase == GamePhase.WordSelection ? "d-none" : "")" @onclick="() => EndGame()">Restart</button>
-			<button class="btn btn-link" @onclick="() => ToggleInstructions()">How to play</button>
-		</div>
-	</div>
+	<GameMenuView CurrentGamePhase="@CurrentGamePhase" RestartEventCallback="EndGame" InstructionToggleEventCallback="ToggleInstructions" />
 
-	@if (CurrentGamePhase == GamePhase.WordSelection)
+	switch (CurrentGamePhase)
 	{
-		<WordSelectionView AnswerWord="@AnswerWord" />
-	}
+		case GamePhase.WordSelection:
+			<WordSelectionView AnswerWord="@AnswerWord" />
+			<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" ClearEventCallback="HandleClearClick" SubmitEventCallback="HandleSubmitClick" />
+			break;
 
-	@if (CurrentGamePhase == GamePhase.Guessing || CurrentGamePhase == GamePhase.GameOver)
-	{
-		<WordGuessingView AnswerWord="@AnswerWord" GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" GuessResults="@GuessResults" />
-	}
+		case GamePhase.Guessing:
+			<WordGuessingView AnswerWord="@AnswerWord" GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" GuessResults="@GuessResults" />
+			<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" ClearEventCallback="HandleClearClick" SubmitEventCallback="HandleSubmitClick" />
+			break;
 
-	@if (CurrentGamePhase == GamePhase.GameOver && !GuessResults.Last().IsCorrect())
-	{
-		<AnswerRevealView AnswerWord="@AnswerWord" />
-	}
-
-	@if (CurrentGamePhase != GamePhase.GameOver)
-	{
-		<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" ClearEventCallback="HandleClearClick" SubmitEventCallback="HandleSubmitClick" />
-	}
-
-	@if (CurrentGamePhase == GamePhase.GameOver)
-	{
-		<div class="text-center justify-content-center">
-			<button class="btn btn-lg btn-outline-primary" @onclick="() => EndGame()">Play Again</button>
-		</div>
+		case GamePhase.GameOver:
+			<WordGuessingView AnswerWord="@AnswerWord" GuessWord="@GuessWord" MaxGuesses="@MaxGuesses" GuessResults="@GuessResults" />
+			@if (!GuessResults.Last().IsCorrect())
+			{
+				<AnswerRevealView AnswerWord="@AnswerWord" />
+			}
+			<PlayAgainButtonView PlayAgainEventCallback="EndGame" />
+			break;
 	}
 }

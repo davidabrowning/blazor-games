@@ -1,0 +1,27 @@
+﻿@using Models.BattleWordle;
+
+<div class="top-row px-4">
+	<div class="d-grid d-md-flex justify-content-md-end">
+		@if (CurrentGamePhase != GamePhase.WordSelection)
+		{
+			<button class="btn btn-link" @onclick="() => InvokeRestartEvent()">Restart</button>
+		}
+		<button class="btn btn-link" @onclick="() => InvokeInstructionToggleEvent()">How to play</button>
+	</div>
+</div>
+
+@code {
+	[Parameter] public GamePhase CurrentGamePhase { get; set; }
+	[Parameter] public EventCallback RestartEventCallback { get; set; }
+	[Parameter] public EventCallback InstructionToggleEventCallback { get; set; }
+
+	private void InvokeRestartEvent()
+	{
+		RestartEventCallback.InvokeAsync();
+	}
+
+	private void InvokeInstructionToggleEvent()
+	{
+		InstructionToggleEventCallback.InvokeAsync();
+	}
+}
