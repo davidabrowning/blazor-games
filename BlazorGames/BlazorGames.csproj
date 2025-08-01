@@ -15,4 +15,8 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\data\battle-wordle-wordlist.txt" />
+  </ItemGroup>
+
 </Project>

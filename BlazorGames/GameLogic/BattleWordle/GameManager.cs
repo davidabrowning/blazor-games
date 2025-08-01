@@ -4,6 +4,7 @@ namespace BlazorGames.GameLogic.BattleWordle
 {
     public class GameManager
     {
+        private readonly WordGenerator _wordGenerator;
         private readonly WordEvaluator _wordEvaluator;
         private readonly UIManager _uiManager;
 
@@ -15,17 +16,18 @@ namespace BlazorGames.GameLogic.BattleWordle
         public List<GuessResult> GuessResults { get; private set; } = new();
         public GamePhase CurrentGamePhase { get; private set; } = GamePhase.PlayerSelection;
 
-        public GameManager(WordEvaluator wordEvaluator, UIManager uiManager)
+        public GameManager(WordGenerator wordGenerator, WordEvaluator wordEvaluator, UIManager uiManager)
         {
+            _wordGenerator = wordGenerator;
             _wordEvaluator = wordEvaluator;
             _uiManager = uiManager;
         }
 
-        public void StartGame(int numPlayers)
+        public async Task StartGame(int numPlayers)
         {
             if (numPlayers == 1)
             {
-                AnswerWord = "SPORK";
+                AnswerWord = await _wordGenerator.Go();
                 CurrentGamePhase = GamePhase.Guessing;
             }
             if (numPlayers == 2)

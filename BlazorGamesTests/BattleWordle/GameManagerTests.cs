@@ -11,8 +11,9 @@ namespace BlazorGamesTests.BattleWordle
         {
             HttpClient httpClient = new();
             WordEvaluator wordEvaluator = new(httpClient);
+            WordGenerator wordGenerator = new(httpClient, wordEvaluator);
             UIManager uiManager = new();
-            _gameManager = new(wordEvaluator, uiManager);
+            _gameManager = new(wordGenerator, wordEvaluator, uiManager);
         }
 
         [Fact]
