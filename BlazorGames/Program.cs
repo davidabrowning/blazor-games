@@ -17,6 +17,7 @@ namespace BlazorGames
             builder.Services.AddScoped<GameLogic.Roygbiv.GameManager>();
             builder.Services.AddScoped<GameLogic.Roygbiv.UIManager>();
             builder.Services.AddScoped<GameLogic.BattleWordle.GameManager>();
+            builder.Services.AddScoped<GameLogic.BattleWordle.UIManager>();
             builder.Services.AddScoped<GameLogic.BattleWordle.WordEvaluator>();
 
             await builder.Build().RunAsync();
