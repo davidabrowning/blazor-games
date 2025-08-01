@@ -16,7 +16,7 @@
 		<div class="row guess-display-row">
 			@for (int j = 0; j < 5; j++)
 			{
-				<div class="guess-input-letter">@(GuessWord.Length > j ? GuessWord[j] : "")</div>
+				<div class="guess-input-letter guess-input-letter-unrevealed">@(GuessWord.Length > j ? GuessWord[j] : "")</div>
 			}
 		</div>
 	}
@@ -25,7 +25,7 @@
 	<div class="row guess-display-row">
 			@for (int j = 0; j < 5; j++)
 			{
-				<div class="guess-input-letter"></div>
+				<div class="guess-input-letter guess-input-letter-unrevealed"></div>
 			}
 		</div>
 	}
