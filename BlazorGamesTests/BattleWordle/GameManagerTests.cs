@@ -11,7 +11,8 @@ namespace BlazorGamesTests.BattleWordle
         {
             HttpClient httpClient = new();
             WordEvaluator wordEvaluator = new(httpClient);
-            _gameManager = new(wordEvaluator);
+            UIManager uiManager = new();
+            _gameManager = new(wordEvaluator, uiManager);
         }
 
         [Fact]
@@ -21,8 +22,9 @@ namespace BlazorGamesTests.BattleWordle
         }
 
         [Fact]
-        public async Task GuessingHasStartedIsTrueAfterValidAnswerWordIsSubmitted()
+        public async Task GuessingHasStartedIsTrueAfterValidAnswerWordIsSubmittedInTwoPlayerGame()
         {
+            _gameManager.StartGame(2);
             _gameManager.AnswerWord = "START";
             await _gameManager.HandleSubmitClick();
             Assert.True(_gameManager.CurrentGamePhase == GamePhase.Guessing);
