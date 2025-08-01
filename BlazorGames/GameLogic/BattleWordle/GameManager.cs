@@ -13,7 +13,7 @@ namespace BlazorGames.GameLogic.BattleWordle
         public string GuessWord { get; set; } = string.Empty;
         public int GuessResultRevealCountdownTicker = 0;
         public List<GuessResult> GuessResults { get; private set; } = new();
-        public GamePhase CurrentGamePhase { get; private set; } = GamePhase.WordSelection;
+        public GamePhase CurrentGamePhase { get; private set; } = GamePhase.PlayerSelection;
 
         public GameManager(WordEvaluator wordEvaluator, UIManager uiManager)
         {
@@ -21,12 +21,25 @@ namespace BlazorGames.GameLogic.BattleWordle
             _uiManager = uiManager;
         }
 
+        public void StartGame(int numPlayers)
+        {
+            if (numPlayers == 1)
+            {
+                AnswerWord = "SPORK";
+                CurrentGamePhase = GamePhase.Guessing;
+            }
+            if (numPlayers == 2)
+            {
+                CurrentGamePhase = GamePhase.WordSelection;
+            }
+        }
+
         public void EndGame()
         {
             AnswerWord = string.Empty;
             GuessWord = string.Empty;
             GuessResults = new();
-            CurrentGamePhase = GamePhase.WordSelection;
+            CurrentGamePhase = GamePhase.PlayerSelection;
         }
 
         public void HandleLetterClick(char letter)

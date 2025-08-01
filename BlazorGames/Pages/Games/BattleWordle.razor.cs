@@ -38,6 +38,11 @@ namespace BlazorGames.Pages.Games
             ShowInstructions = !ShowInstructions;
         }
 
+        private void StartGame(int numPlayers)
+        {
+            _gameManager.StartGame(numPlayers);
+        }
+
         private void EndGame()
         {
             _gameManager.EndGame();

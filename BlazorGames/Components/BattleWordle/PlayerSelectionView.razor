@@ -1,0 +1,16 @@
+﻿<div class="text-center justify-content-center">
+	<button class="btn btn-lg btn-outline-primary my-4" @onclick="() => SendPlayerCount(1)">1 player</button>
+</div>
+<div class="text-center justify-content-center">
+	<button class="btn btn-lg btn-outline-primary my-4" @onclick="() => SendPlayerCount(2)">2 players</button>
+</div>
+
+@code {
+	[Parameter]
+	public EventCallback<int> OnClickEventCallback { get; set; }
+
+	private async Task SendPlayerCount(int playerCount)
+	{
+		await OnClickEventCallback.InvokeAsync(playerCount);
+	}
+}

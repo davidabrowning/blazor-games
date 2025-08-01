@@ -3,8 +3,9 @@
     public enum GamePhase
     {
         NotStarted = 0,
-        WordSelection = 1,
-        Guessing = 2,
-        GameOver = 3,
+        PlayerSelection = 1,
+        WordSelection = 2,
+        Guessing = 3,
+        GameOver = 4,
     }
 }

@@ -17,6 +17,10 @@ else
 
 	switch (CurrentGamePhase)
 	{
+		case GamePhase.PlayerSelection:
+			<PlayerSelectionView OnClickEventCallback="(numPlayers) => StartGame(numPlayers)" />
+			break;
+
 		case GamePhase.WordSelection:
 			<WordSelectionView AnswerWord="@AnswerWord" />
 			<KeyboardView GuessResults="@GuessResults" KeyClickEventCallback="OnKeyboardLetterClicked" ClearEventCallback="HandleClearClick" SubmitEventCallback="HandleSubmitClick" />
