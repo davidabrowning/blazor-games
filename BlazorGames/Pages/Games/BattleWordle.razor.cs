@@ -40,7 +40,7 @@ namespace BlazorGames.Pages.Games
 
         private async Task StartGameAsync(int numPlayers)
         {
-            await _gameManager.StartGame(numPlayers);
+            await _gameManager.StartGameAsync(numPlayers);
         }
 
         private void EndGame()
