@@ -13,8 +13,9 @@ namespace BlazorGames.GameLogic.BattleWordle
         {
             try
             {
-                string url = $"https://api.dictionaryapi.dev/api/v2/entries/en/{word.ToLower()}";
-                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                string baseUrl = "https://freedictionaryapi.com/api/v1/entries/en/";
+                string fullUrl = baseUrl + word.ToLower();
+                HttpResponseMessage response = await _httpClient.GetAsync(fullUrl);
 
                 if (response.IsSuccessStatusCode)
                 {
