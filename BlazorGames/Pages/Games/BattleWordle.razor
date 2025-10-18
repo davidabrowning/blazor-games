@@ -18,7 +18,7 @@ else
 	switch (CurrentGamePhase)
 	{
 		case GamePhase.PlayerSelection:
-			<PlayerSelectionView OnClickEventCallback="(numPlayers) => StartGame(numPlayers)" />
+			<PlayerSelectionView OnClickEventCallback="(numPlayers) => StartGameAsync(numPlayers)" />
 			break;
 
 		case GamePhase.WordSelection:
