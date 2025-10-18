@@ -38,9 +38,9 @@ namespace BlazorGames.Pages.Games
             ShowInstructions = !ShowInstructions;
         }
 
-        private void StartGame(int numPlayers)
+        private async Task StartGameAsync(int numPlayers)
         {
-            _gameManager.StartGame(numPlayers);
+            await _gameManager.StartGameAsync(numPlayers);
         }
 
         private void EndGame()

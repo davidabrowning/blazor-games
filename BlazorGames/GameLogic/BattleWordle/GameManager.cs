@@ -23,7 +23,7 @@ namespace BlazorGames.GameLogic.BattleWordle
             _uiManager = uiManager;
         }
 
-        public async Task StartGame(int numPlayers)
+        public async Task StartGameAsync(int numPlayers)
         {
             if (numPlayers == 1)
             {

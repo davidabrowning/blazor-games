@@ -25,7 +25,7 @@ namespace BlazorGamesTests.BattleWordle
         [Fact]
         public async Task GuessingHasStartedIsTrueAfterValidAnswerWordIsSubmittedInTwoPlayerGame()
         {
-            await _gameManager.StartGame(2);
+            await _gameManager.StartGameAsync(2);
             _gameManager.AnswerWord = "START";
             await _gameManager.HandleSubmitClick();
             Assert.True(_gameManager.CurrentGamePhase == GamePhase.Guessing);
